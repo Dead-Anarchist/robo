@@ -1,0 +1,8 @@
+prefix=/home/sanya/test_ws/devel/.private/odom_gazebo_republisher
+
+Name: odom_gazebo_republisher
+Description: Description of odom_gazebo_republisher
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

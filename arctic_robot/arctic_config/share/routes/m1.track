@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<Track ID="1">
+  <Point ID="32767" X="-39." Y="0.86" Angle="-20" Name="P1"/>
+  <Action ID="32768" Command="RDF Command" Filename="analyze_closest_rock.rdf"/>
+  <Point ID="32769" X="42.3" Y="5.3" Angle="120" Name="Finish Point"/>
+</Track>

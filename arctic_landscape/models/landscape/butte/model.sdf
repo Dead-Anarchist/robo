@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+
+  <model name="butte">
+      <pose>0 0 0  0 0 0</pose>
+      <static>true</static>
+      <link name="butte">
+
+        <!-- <inertial> -->
+        <!--   <mass>10</mass> -->
+        <!-- </inertial> -->
+        
+        <collision name="collision">
+          <pose>0 0 0.8 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.5 0.7 1.6</size>
+            </box>
+            <!-- <mesh> -->
+            <!--   <uri>model://landscape/butte/meshes/butte.dae</uri> -->
+            <!-- </mesh> -->
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://landscape/butte/meshes/butte.dae</uri>
+              <submesh>
+                <name>Butte2</name>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material> 
+            <script>
+              <uri>model://landscape/butte/materials/scripts/butte.material</uri>
+              <name>butte/winter</name>
+            </script>
+          </material> 
+        </visual>
+      </link>
+    </model>
+</sdf>

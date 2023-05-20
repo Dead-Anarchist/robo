@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+
+  <model name="colibrator">
+      <pose>0 0 0  0 0 0</pose>
+      <static>true</static>
+      <link name="colibrator">
+
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://landscape/colibrator/meshes/colibrator.dae</uri>
+            </mesh>
+          </geometry>
+          <material> 
+            <script>
+              <uri>model://landscape/colibrator/materials/scripts/colibrator.material</uri>
+              <name>colibrator</name>
+            </script>
+          </material> 
+        </visual>
+      </link>
+    </model>
+</sdf>

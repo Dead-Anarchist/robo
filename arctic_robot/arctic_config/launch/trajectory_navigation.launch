@@ -1,0 +1,38 @@
+<launch>
+  <arg name="rviz" default="True"/>
+  <arg name="static_pose" default="False"/>
+  <arg name="robot" default="default_robot"/>
+  <arg name="output" default="screen"/>
+
+  <node if="$(arg static_pose)"
+    pkg="tf" type="static_transform_publisher" name="static_pose_broadcaster"
+    args="0 0 0 0 0 1 1 map base_link 100"
+    ns="$(arg robot)" />
+
+  <!-- Run the map server -->
+  <node name="map_server" pkg="map_server" type="map_server"
+    ns="/"
+    args="$(find arctic_config)/config/map.yaml"/>
+
+  <node pkg="move_base" type="move_base" name="move_base"
+    ns="$(arg robot)"
+    output="$(arg output)">
+    <rosparam file="$(find arctic_config)/config/navigation/costmap_common_params.yaml" command="load" ns="global_costmap" subst_value="true"/>
+    <rosparam file="$(find arctic_config)/config/navigation/costmap_common_params.yaml" command="load" ns="local_costmap" subst_value="true"/>
+    <rosparam file="$(find arctic_config)/config/navigation/local_costmap_params.yaml" command="load" subst_value="true"/>
+    <rosparam file="$(find arctic_config)/config/navigation/global_costmap_params.yaml" command="load" subst_value="true"/> 
+    <rosparam file="$(find arctic_config)/config/navigation/base_local_planner_params.yaml" command="load" subst_value="true"/>
+
+    <param name="controller_frequency" type="double" value="10." />
+    
+    <remap from="odom" to="odom_ros"/>
+    <remap from="map" to="/map"/>
+
+    <remap from="cmd_vel" to="mobile_base_controller/cmd_vel"/>
+
+    <param name="base_local_planner" type="str" value="teb_local_planner/TebLocalPlannerROS" />
+    <!--param name="base_local_planner" type="str" value="base_local_planner/TrajectoryPlannerROS" /-->
+    <!--param name="base_local_planner" type="str" value="dwa_local_planner/DWAPlannerROS" /-->
+  </node>
+
+</launch>  

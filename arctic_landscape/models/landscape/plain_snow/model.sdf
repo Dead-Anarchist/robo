@@ -1,0 +1,155 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="plain_snow">
+      <pose>0 0 0  0 0 0</pose>
+      <static>true</static>
+      <link name="body">
+        <collision name="collision_terrain">
+          <geometry>
+            <mesh>
+              <uri>model://landscape/plain_snow/meshes/plain_snow.dae</uri>
+              <submesh>
+                <name>Terrain</name>
+              </submesh>
+            </mesh>
+          </geometry>
+        </collision>
+        <collision name="collision_cliff">
+          <geometry>
+            <mesh>
+              <uri>model://landscape/plain_snow/meshes/plain_snow.dae</uri>
+              <submesh>
+                <name>Cliff</name>
+              </submesh>
+            </mesh>
+          </geometry>
+        </collision>
+
+        <!-- <visual name="visual_snowbank"> -->
+        <!--   <geometry> -->
+        <!--     <mesh> -->
+        <!--       <uri>model://landscape/plain_snow/meshes/plain_snow.dae</uri> -->
+        <!--       <submesh> -->
+        <!--         <name>Snowbank</name> -->
+        <!--       </submesh> -->
+        <!--     </mesh> -->
+        <!--   </geometry> -->
+        <!--   <material>  -->
+        <!--     <script> -->
+        <!--       <uri>model://landscape/plain_snow/materials/scripts/plain_snow.material</uri> -->
+        <!--       <name>plain_snow</name> -->
+        <!--     </script> -->
+        <!--     <ambient>0.5 0.5 0.5 1</ambient> -->
+        <!--     <diffuse>0.5 0.5 0.5 1</diffuse> -->
+        <!--     <specular>0.5 0.5 0.5 1</specular> -->
+        <!--     <emissive>0.5 0.5 0.5 1</emissive> -->
+        <!--   </material>  -->
+        <!-- </visual> -->
+
+        <visual name="visual_terrain">
+          <geometry>
+            <mesh>
+              <uri>model://landscape/plain_snow/meshes/plain_snow.dae</uri>
+              <submesh>
+                <name>Terrain</name>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material> 
+            <script>
+              <uri>model://landscape/plain_snow/materials/scripts/plain_snow.material</uri>
+              <name>plain_snow</name>
+            </script>
+            <ambient>0.5 0.5 0.5 1</ambient>
+            <diffuse>0.5 0.5 0.5 1</diffuse>
+            <specular>0.5 0.5 0.5 1</specular>
+            <emissive>0.5 0.5 0.5 1</emissive>
+          </material> 
+        </visual>
+
+        <visual name="visual_cliff">
+          <geometry>
+            <mesh>
+              <uri>model://landscape/plain_snow/meshes/plain_snow.dae</uri>
+              <submesh>
+                <name>Cliff</name>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material> 
+            <script>
+              <uri>model://landscape/plain_snow/materials/scripts/plain_snow.material</uri>
+              <name>plain_snow</name>
+            </script>
+            <ambient>0.5 0.5 0.5 1</ambient>
+            <diffuse>0.5 0.5 0.5 1</diffuse>
+            <specular>0.5 0.5 0.5 1</specular>
+            <emissive>0.5 0.5 0.5 1</emissive>
+          </material> 
+        </visual>
+
+        <visual name="visual_outerplane">
+          <geometry>
+            <mesh>
+              <uri>model://landscape/plain_snow/meshes/plain_snow.dae</uri>
+              <submesh>
+                <name>Outerplane</name>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material> 
+            <script>
+              <uri>model://landscape/plain_snow/materials/scripts/plain_snow.material</uri>
+              <name>plain_snow</name>
+            </script>
+            <ambient>0.5 0.5 0.5 1</ambient>
+            <diffuse>0.5 0.5 0.5 1</diffuse>
+            <specular>0.5 0.5 0.5 1</specular>
+            <emissive>0.5 0.5 0.5 1</emissive>
+          </material> 
+        </visual>
+
+        <visual name="visual_mountain">
+          <geometry>
+            <mesh>
+              <uri>model://landscape/plain_snow/meshes/plain_snow.dae</uri>
+              <submesh>
+                <name>Mountain</name>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material> 
+            <script>
+              <uri>model://landscape/plain_snow/materials/scripts/plain_snow.material</uri>
+              <name>plain_snow</name>
+            </script>
+            <ambient>0.5 0.5 0.5 1</ambient>
+            <diffuse>0.5 0.5 0.5 1</diffuse>
+            <specular>0.5 0.5 0.5 1</specular>
+            <emissive>0.5 0.5 0.5 1</emissive>
+          </material> 
+        </visual>
+
+        <visual name="visual_water">
+          <geometry>
+            <mesh>
+              <uri>model://landscape/plain_snow/meshes/plain_snow.dae</uri>
+              <submesh>
+                <name>Water</name>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material> 
+            <!-- <script> -->
+            <!--   <!-1- <name>Gazebo/SkyBlue</name> -1-> -->
+            <!--   <!-1- <uri>__default__</uri> -1-> -->
+            <!-- </script> -->
+            <ambient>0.13 0.24 0.90 1</ambient>
+            <diffuse>0.1 0.1 0.1 1</diffuse>
+            <specular>0.1 0.1 0.1 0.8</specular>
+            <emissive>0.8 0.8 0.8 0.6</emissive>
+          </material> 
+        </visual>
+      </link>
+    </model>
+</sdf>

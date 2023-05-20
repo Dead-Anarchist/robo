@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package format='2'>
+  <name>target_vehicle_control</name>
+  <version>0.0.0</version>
+  <description>Control primitives for the target of the arctic robot</description>
+
+  <maintainer email="petr.sorokoumov@gmail.com">Petr Sorokoumov</maintainer>
+
+  <license>TODO</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>tf</depend>
+  <depend>std_srvs</depend>
+  <depend>signproc_soar</depend>
+  <depend>scenario_executioner</depend>
+  <export>
+  </export>
+</package>

@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name="Lamp Post">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <pose>0 0 1.5 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.2 0.2 3</size>
+          </box>
+          <!-- <mesh> -->
+          <!--   <uri>model://lamp_post/meshes/lamp_post.dae</uri> -->
+          <!--   <scale>2 2 2</scale> -->
+          <!-- </mesh> -->
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://lamp_post/meshes/lamp_post.dae</uri>
+            <scale>2 2 2</scale>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>

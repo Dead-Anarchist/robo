@@ -1,0 +1,11 @@
+
+build/
+devel/
+src/CMakeLists.txt
+.catkin_workspace
+*.pyc
+*.blend1
+*.swp
+*.swo
+src/arctic_model/arctic_model_gazebo/images/*
+*~

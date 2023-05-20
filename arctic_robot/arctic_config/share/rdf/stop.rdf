@@ -1,0 +1,3 @@
+<KI:A1> <ki:type> <ki:action> .
+<KI:A1> <ki:actor> <ki:me> .
+<KI:A1> <ki:action_type> <ki:stop> .

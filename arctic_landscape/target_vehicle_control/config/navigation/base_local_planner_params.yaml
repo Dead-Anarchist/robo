@@ -1,0 +1,180 @@
+
+base_global_planner: "global_planner/GlobalPlanner"
+#base_global_planner: "navfn/NavfnROS"
+
+#recovery_behaviors: []
+
+controller_frequency: 5.  # 20.
+planner_frequency: 0.  # 0 to replan only on a new goal or when local planner fails
+planner_patience: 5.
+controller_patience: 15.
+recovery_behavior_enabled: false
+shutdown_costmaps: false
+oscillation_timeout: 0.  # 0. is infinite
+oscillation_distance: 0.5
+max_planning_retries: 2  # -1 is infinite
+
+
+# Planners
+GlobalPlanner:
+  allow_unknown: true
+  default_tolerance: 0.
+  visualize_potential: true
+  use_dijkstra: true  # A* would be better but implementation makes it undesirable
+  use_quadratic: true
+  use_grid_path: false
+  old_navfn_behavior: false
+  lethal_cost: 220  # 253 - how far from the obstacle is permissible
+  neutral_cost: 66
+  cost_factor: 0.55
+  publish_potential: true
+  orientation_mode: 0.
+  orientation_window_size: 1
+
+
+TrajectoryPlannerROS:
+  max_vel_x: 3.
+  min_vel_x: 0.5
+  max_vel_theta: 1.
+  min_vel_theta: -1.
+  min_in_place_vel_theta: 0.05
+  escape_vel: -0.5
+
+  acc_lim_theta: 2.5
+  acc_lim_x: 1.
+  acc_lim_y: 0.
+
+  holonomic_robot: false
+  
+  meter_scoring: true
+  yaw_goal_tolerance: 0.5
+  xy_goal_tolerance: 3.0
+  latch_xy_goal_tolerance: true
+  
+  sim_time: 5
+
+DWAPlannerROS:
+  use_dwa: true
+  global_frame_id: $(arg robot)/odom
+
+  acc_lim_x: .5
+  acc_lim_y: 0.
+  acc_lim_th: 2.5
+  max_vel_trans: 2.
+  min_vel_trans: -1.  # 0.2
+  max_vel_x: 2.
+  min_vel_x: -1.
+  max_vel_y: 0.
+  min_vel_y: 0.
+  max_vel_theta: 1.
+  min_vel_theta: 0.2  # 0.1
+
+  yaw_goal_tolerance: 0.3
+  xy_goal_tolerance: 0.3
+  latch_xy_goal_tolerance: false
+
+  sim_time: 1.7
+  sim_granularity: 0.025
+  vx_samples: 3
+  vy_samples: 1
+  vth_samples: 20
+  
+  path_distance_bias: 32.  # 32
+  goal_distance_bias: 28.
+  occdist_scale: 0.001  # 0.01
+  forward_point_distance: 0.325
+  stop_time_buffer: 0.2
+  scaling_speed: 0.25
+  max_scaling_factor: 0.2
+  publish_cost_grid: true  # kinetic or obsolete?
+  publish_cost_grid_pc: true
+  publish_traj_pc: true
+
+  oscillation_reset_dist: 0.05
+  oscillation_reset_angle: 10.
+
+  prune_plan: true
+
+TebLocalPlannerROS:
+   odom_topic: $(arg robot)/odom
+   map_frame: map
+      
+   # Trajectory
+    
+   teb_autosize: True
+   dt_ref: 0.4
+   dt_hysteresis: 0.1
+   global_plan_overwrite_orientation: True
+   max_global_plan_lookahead_dist: 6.0
+   feasibility_check_no_poses: 5
+   allow_init_with_backwards_motion: True
+      
+   # Robot
+           
+   max_vel_x: 3.
+   max_vel_x_backwards: 2.
+   max_vel_theta: 1.
+   acc_lim_x: 2.  # 1.5
+   acc_lim_theta: 2.5  # 1.0
+   min_turning_radius: 0.0
+   footprint_model: # types: "point", "circular", "two_circles", "line", "polygon"
+     #type: "polygon"
+     type: circular
+     radius: 0.9 # for type "circular"
+     #vertices: [[0.55, 0.56], [-0.55, 0.56], [-0.55, -0.56], [0.55, -0.56]]
+
+   # GoalTolerance
+      
+   xy_goal_tolerance: 0.3
+   yaw_goal_tolerance: 0.3
+   free_goal_vel: False
+      
+   # Obstacles
+      
+   min_obstacle_dist: 0.2
+   include_costmap_obstacles: True
+   inflation_dist: 2.
+   costmap_obstacles_behind_robot_dist: 1.0
+   obstacle_poses_affected: 30
+   costmap_converter_plugin: ""
+   costmap_converter_spin_thread: True
+   costmap_converter_rate: 5
+
+   # Optimization
+      
+   no_inner_iterations: 5
+   no_outer_iterations: 4
+   optimization_activate: True
+   optimization_verbose: False
+   penalty_epsilon: 0.1
+   weight_max_vel_x: 2
+   weight_max_vel_theta: 1
+   weight_acc_lim_x: 1
+   weight_acc_lim_theta: 1
+   weight_kinematics_nh: 1000
+   weight_kinematics_forward_drive: 1
+   weight_kinematics_turning_radius: 1
+   weight_optimaltime: 1
+   weight_obstacle: 50
+   weight_dynamic_obstacle: 10 # not in use yet
+   selection_alternative_time_cost: False # not in use yet
+
+   # Homotopy Class Planner
+
+   # enabling homotopies (True) gives better trajectories, but much worse performance near many obstacles
+   enable_homotopy_class_planning: True
+   enable_multithreading: True
+   simple_exploration: False
+
+   # default 4, how many alternative trajectories are optimized, important to not get stuck
+   # but has a big impact on CPU resources
+   max_number_classes: 2
+   roadmap_graph_no_samples: 15
+   roadmap_graph_area_width: 5
+   h_signature_prescaler: 0.5
+   h_signature_threshold: 0.1
+   obstacle_keypoint_offset: 0.1
+   obstacle_heading_threshold: 0.45
+   visualize_hc_graph: False
+
+

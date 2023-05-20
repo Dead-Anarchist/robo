@@ -1,0 +1,67 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+
+  <model name="Stones set">
+      <pose>0 0 0  0 0 0</pose>
+      <static>true</static>
+      <link name="stones">
+        <!-- <inertial> -->
+        <!--   <mass>10</mass> -->
+        <!-- </inertial> -->
+        
+        <!-- <collision name="collision"> -->
+        <!--   <geometry> -->
+        <!--     <mesh> -->
+        <!--       <uri>model://landscape/set_stones/meshes/stones_set.dae</uri> -->
+        <!--       <!-1- <submesh> -1-> -->
+        <!--       <!-1-   <name>LargeStone</name> -1-> -->
+        <!--       <!-1- </submesh> -1-> -->
+        <!--       <!-1- <scale>10 10 10</scale> -1-> -->
+        <!--     </mesh> -->
+        <!--   </geometry> -->
+        <!-- </collision> -->
+
+        <!-- for set of stones wouldnt be added in obstacle map, the size of collision made very small -->
+        <collision name="collision">
+          <geometry>
+          <box>
+            <size>0.001 0.001 0.001</size>
+          </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual_dyke">
+          <geometry>
+            <mesh>
+              <uri>model://landscape/set_stones/meshes/set_stones.dae</uri>
+              <submesh>
+                <name>Dyke</name>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material> 
+            <script>
+              <uri>model://landscape/set_stones/materials/scripts/set_stones.material</uri>
+              <name>dyke</name>
+            </script>
+          </material> 
+        </visual>
+        <visual name="visual_stones">
+          <geometry>
+            <mesh>
+              <uri>model://landscape/set_stones/meshes/set_stones.dae</uri>
+              <submesh>
+                <name>Stones</name>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material> 
+            <script>
+              <uri>model://landscape/set_stones/materials/scripts/set_stones.material</uri>
+              <name>stones</name>
+            </script>
+          </material> 
+        </visual>
+      </link>
+    </model>
+</sdf>

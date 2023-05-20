@@ -1,0 +1,9 @@
+<launch>
+  <arg name="robot" default="$(env ROBOT)"/>
+ 
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" 
+    respawn="false" output="screen" ns="$(arg robot)"
+    args="rwheel3_state_controller lwheel3_state_controller rwheel_state_controller lwheel_state_controller camera_yaw_controller camera_pitch_controller joint_state_controller" />
+    
+
+</launch>

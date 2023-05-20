@@ -1,0 +1,19 @@
+<launch>
+
+  <arg name="robot" default="default_robot"/>
+
+  <arg name="paused" default="false"/>
+
+  <!-- Launch gazebo world and robot -->
+  <include file="$(find arctic_model_gazebo)/launch/arctic_model_only.launch">
+    <arg name="robot" value="$(arg robot)"/>
+    <arg name="paused" value="$(arg paused)"/>
+  </include>
+  
+
+  <!-- Bring up robot -->
+  <include file="$(find arctic_config)/launch/arctic_bringup.launch">
+    <arg name="robot" value="$(arg robot)"/>
+  </include>
+
+</launch>

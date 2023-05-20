@@ -1,0 +1,19 @@
+material man_lay 
+{
+  technique
+  {
+    pass
+    {
+      /* ambient 0 0.5 0.5 1.0 */
+      /* diffuse 0 0 0.1 1.0 */
+      /* specular 0.0 0.0 0.0 1.0 */
+      /* emissive 0.5 0.5 0.5 1.0 */
+
+      texture_unit
+      {
+       texture ../textures/man_lay.png
+      // scale 0.5 0.5
+      }
+    }
+  }
+}

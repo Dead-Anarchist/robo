@@ -1,0 +1,339 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> cmd
+Rule 1     cmd -> STOP
+Rule 2     cmd -> CONTINUE
+Rule 3     cmd -> VELOCITY fval fval
+Rule 4     cmd -> MOVE fval
+Rule 5     cmd -> ROTATE fval
+Rule 6     cmd -> TO fval fval fval
+Rule 7     cmd -> AIM_CAMERA fval fval
+Rule 8     cmd -> GET POS
+Rule 9     cmd -> GET CAMERA UINUM
+Rule 10    cmd -> GET DEPTH UINUM
+Rule 11    cmd -> GET OBJECTS
+Rule 12    cmd -> PATROL
+Rule 13    fval -> FNUM
+Rule 14    fval -> INUM
+Rule 15    fval -> UINUM
+
+Terminals, with rules where they appear
+
+AIM_CAMERA           : 7
+CAMERA               : 9
+CONTINUE             : 2
+DEPTH                : 10
+FNUM                 : 13
+GET                  : 8 9 10 11
+INUM                 : 14
+MOVE                 : 4
+OBJECTS              : 11
+PATROL               : 12
+POS                  : 8
+ROTATE               : 5
+STOP                 : 1
+TO                   : 6
+UINUM                : 9 10 15
+VELOCITY             : 3
+error                : 
+
+Nonterminals, with rules where they appear
+
+cmd                  : 0
+fval                 : 3 3 4 5 6 6 6 7 7
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . cmd
+    (1) cmd -> . STOP
+    (2) cmd -> . CONTINUE
+    (3) cmd -> . VELOCITY fval fval
+    (4) cmd -> . MOVE fval
+    (5) cmd -> . ROTATE fval
+    (6) cmd -> . TO fval fval fval
+    (7) cmd -> . AIM_CAMERA fval fval
+    (8) cmd -> . GET POS
+    (9) cmd -> . GET CAMERA UINUM
+    (10) cmd -> . GET DEPTH UINUM
+    (11) cmd -> . GET OBJECTS
+    (12) cmd -> . PATROL
+
+    STOP            shift and go to state 2
+    CONTINUE        shift and go to state 3
+    VELOCITY        shift and go to state 4
+    MOVE            shift and go to state 5
+    ROTATE          shift and go to state 6
+    TO              shift and go to state 7
+    AIM_CAMERA      shift and go to state 8
+    GET             shift and go to state 9
+    PATROL          shift and go to state 10
+
+    cmd                            shift and go to state 1
+
+state 1
+
+    (0) S' -> cmd .
+
+
+
+state 2
+
+    (1) cmd -> STOP .
+
+    $end            reduce using rule 1 (cmd -> STOP .)
+
+
+state 3
+
+    (2) cmd -> CONTINUE .
+
+    $end            reduce using rule 2 (cmd -> CONTINUE .)
+
+
+state 4
+
+    (3) cmd -> VELOCITY . fval fval
+    (13) fval -> . FNUM
+    (14) fval -> . INUM
+    (15) fval -> . UINUM
+
+    FNUM            shift and go to state 12
+    INUM            shift and go to state 13
+    UINUM           shift and go to state 14
+
+    fval                           shift and go to state 11
+
+state 5
+
+    (4) cmd -> MOVE . fval
+    (13) fval -> . FNUM
+    (14) fval -> . INUM
+    (15) fval -> . UINUM
+
+    FNUM            shift and go to state 12
+    INUM            shift and go to state 13
+    UINUM           shift and go to state 14
+
+    fval                           shift and go to state 15
+
+state 6
+
+    (5) cmd -> ROTATE . fval
+    (13) fval -> . FNUM
+    (14) fval -> . INUM
+    (15) fval -> . UINUM
+
+    FNUM            shift and go to state 12
+    INUM            shift and go to state 13
+    UINUM           shift and go to state 14
+
+    fval                           shift and go to state 16
+
+state 7
+
+    (6) cmd -> TO . fval fval fval
+    (13) fval -> . FNUM
+    (14) fval -> . INUM
+    (15) fval -> . UINUM
+
+    FNUM            shift and go to state 12
+    INUM            shift and go to state 13
+    UINUM           shift and go to state 14
+
+    fval                           shift and go to state 17
+
+state 8
+
+    (7) cmd -> AIM_CAMERA . fval fval
+    (13) fval -> . FNUM
+    (14) fval -> . INUM
+    (15) fval -> . UINUM
+
+    FNUM            shift and go to state 12
+    INUM            shift and go to state 13
+    UINUM           shift and go to state 14
+
+    fval                           shift and go to state 18
+
+state 9
+
+    (8) cmd -> GET . POS
+    (9) cmd -> GET . CAMERA UINUM
+    (10) cmd -> GET . DEPTH UINUM
+    (11) cmd -> GET . OBJECTS
+
+    POS             shift and go to state 19
+    CAMERA          shift and go to state 20
+    DEPTH           shift and go to state 21
+    OBJECTS         shift and go to state 22
+
+
+state 10
+
+    (12) cmd -> PATROL .
+
+    $end            reduce using rule 12 (cmd -> PATROL .)
+
+
+state 11
+
+    (3) cmd -> VELOCITY fval . fval
+    (13) fval -> . FNUM
+    (14) fval -> . INUM
+    (15) fval -> . UINUM
+
+    FNUM            shift and go to state 12
+    INUM            shift and go to state 13
+    UINUM           shift and go to state 14
+
+    fval                           shift and go to state 23
+
+state 12
+
+    (13) fval -> FNUM .
+
+    FNUM            reduce using rule 13 (fval -> FNUM .)
+    INUM            reduce using rule 13 (fval -> FNUM .)
+    UINUM           reduce using rule 13 (fval -> FNUM .)
+    $end            reduce using rule 13 (fval -> FNUM .)
+
+
+state 13
+
+    (14) fval -> INUM .
+
+    FNUM            reduce using rule 14 (fval -> INUM .)
+    INUM            reduce using rule 14 (fval -> INUM .)
+    UINUM           reduce using rule 14 (fval -> INUM .)
+    $end            reduce using rule 14 (fval -> INUM .)
+
+
+state 14
+
+    (15) fval -> UINUM .
+
+    FNUM            reduce using rule 15 (fval -> UINUM .)
+    INUM            reduce using rule 15 (fval -> UINUM .)
+    UINUM           reduce using rule 15 (fval -> UINUM .)
+    $end            reduce using rule 15 (fval -> UINUM .)
+
+
+state 15
+
+    (4) cmd -> MOVE fval .
+
+    $end            reduce using rule 4 (cmd -> MOVE fval .)
+
+
+state 16
+
+    (5) cmd -> ROTATE fval .
+
+    $end            reduce using rule 5 (cmd -> ROTATE fval .)
+
+
+state 17
+
+    (6) cmd -> TO fval . fval fval
+    (13) fval -> . FNUM
+    (14) fval -> . INUM
+    (15) fval -> . UINUM
+
+    FNUM            shift and go to state 12
+    INUM            shift and go to state 13
+    UINUM           shift and go to state 14
+
+    fval                           shift and go to state 24
+
+state 18
+
+    (7) cmd -> AIM_CAMERA fval . fval
+    (13) fval -> . FNUM
+    (14) fval -> . INUM
+    (15) fval -> . UINUM
+
+    FNUM            shift and go to state 12
+    INUM            shift and go to state 13
+    UINUM           shift and go to state 14
+
+    fval                           shift and go to state 25
+
+state 19
+
+    (8) cmd -> GET POS .
+
+    $end            reduce using rule 8 (cmd -> GET POS .)
+
+
+state 20
+
+    (9) cmd -> GET CAMERA . UINUM
+
+    UINUM           shift and go to state 26
+
+
+state 21
+
+    (10) cmd -> GET DEPTH . UINUM
+
+    UINUM           shift and go to state 27
+
+
+state 22
+
+    (11) cmd -> GET OBJECTS .
+
+    $end            reduce using rule 11 (cmd -> GET OBJECTS .)
+
+
+state 23
+
+    (3) cmd -> VELOCITY fval fval .
+
+    $end            reduce using rule 3 (cmd -> VELOCITY fval fval .)
+
+
+state 24
+
+    (6) cmd -> TO fval fval . fval
+    (13) fval -> . FNUM
+    (14) fval -> . INUM
+    (15) fval -> . UINUM
+
+    FNUM            shift and go to state 12
+    INUM            shift and go to state 13
+    UINUM           shift and go to state 14
+
+    fval                           shift and go to state 28
+
+state 25
+
+    (7) cmd -> AIM_CAMERA fval fval .
+
+    $end            reduce using rule 7 (cmd -> AIM_CAMERA fval fval .)
+
+
+state 26
+
+    (9) cmd -> GET CAMERA UINUM .
+
+    $end            reduce using rule 9 (cmd -> GET CAMERA UINUM .)
+
+
+state 27
+
+    (10) cmd -> GET DEPTH UINUM .
+
+    $end            reduce using rule 10 (cmd -> GET DEPTH UINUM .)
+
+
+state 28
+
+    (6) cmd -> TO fval fval fval .
+
+    $end            reduce using rule 6 (cmd -> TO fval fval fval .)
+

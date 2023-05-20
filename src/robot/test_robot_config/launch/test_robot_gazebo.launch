@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  
+    <arg name="robot" default="" />
+    
+  <param name="robot_description" 
+    command="$(find xacro)/xacro --inorder '$(find test_robot_description)/urdf/test_robot.urdf.xacro'"/>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+    
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="debug" value="False" />
+    <arg name="gui" value="True" />
+    <arg name="paused" value="False"/>
+    <arg name="use_sim_time" value="True"/>
+    <arg name="headless" value="False"/>
+  </include>
+   
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" 
+    args="-param robot_description -urdf -x 0 -y 0 -z 0.1 -model test_robot" />
+
+  <rosparam file="$(find test_robot_config)/config/control.yaml" command="load" />
+    
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" 
+    respawn="false" output="screen"
+    args="joint_state_controller mobile_base_controller" />
+      
+    
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find test_robot_config)/rviz/test_robot.rviz" required="true" />
+    
+  <!--node name="controller" pkg="test_robot_control" type="controller.py" required="true" output="screen">
+      <remap from="mobile_base_controller/cmd_vel" to="mobile_base_controller/null" />
+  </node-->
+  
+  
+  <node name="map_server" pkg="map_server" type="map_server"
+    ns="/"
+    args="$(find test_robot_config)/config/map.yaml"/>
+
+  <node pkg="move_base" type="move_base" name="move_base"
+    ns="/"
+    output="screen">
+    <rosparam file="$(find test_robot_config)/config/navigation/costmap_common_params.yaml" command="load" ns="global_costmap" subst_value="true"/>
+    <rosparam file="$(find test_robot_config)/config/navigation/costmap_common_params.yaml" command="load" ns="local_costmap" subst_value="true"/>
+    <rosparam file="$(find test_robot_config)/config/navigation/local_costmap_params.yaml" command="load" subst_value="true"/>
+    <rosparam file="$(find test_robot_config)/config/navigation/global_costmap_params.yaml" command="load" subst_value="true"/> 
+    <rosparam file="$(find test_robot_config)/config/navigation/base_local_planner_params.yaml" command="load" subst_value="true"/>
+
+    <param name="controller_frequency" type="double" value="10." />
+    
+    <remap from="odom" to="odom_ros"/>
+    <remap from="map" to="/map"/>
+
+    <remap from="cmd_vel" to="mobile_base_controller/cmd_vel"/>
+
+    <param name="base_local_planner" type="str" value="teb_local_planner/TebLocalPlannerROS" />
+    <param name="base_global_planner" type="str" value="custom_global_planner/CustomGlobalPlanner" />
+    <!--param name="base_local_planner" type="str" value="dwa_local_planner/DWAPlannerROS" /-->
+  </node>
+  
+    <node name="odom_gazebo_republisher" pkg="odom_gazebo_republisher" type="odom_republisher.py"
+    ns="/">
+    <remap from="odom" to="gazebo_ground_truth_odom" />
+  </node>
+  
+  <node pkg="tf" type="static_transform_publisher" name="map_broadcaster" args="0 0 0 0 0 0 1 map odom 100" />
+  
+  <!--node name="planner" pkg="test_robot_control" type="bug_robot_nav.py" ns="/"-->
+  
+</launch>

@@ -1,0 +1,408 @@
+<?xml version="1.0" ?>
+<!-- last update -->
+<!-- 2020.02.08 -->
+<sdf version="1.6">
+  <world name="default">
+
+    <gui>
+      <camera name="default">
+        <pose>31.7 8 6.4 0 0.17 -2.8</pose>
+        <!-- <pose>82 -6 2.5 0 0.14 -3.11</pose> -->
+      </camera>
+    </gui>
+
+    <physics name="ode_def" type="ode" default="true">
+      <real_time_factor>0.2</real_time_factor>
+      <real_time_update_rate>400</real_time_update_rate>
+      <max_step_size>0.001</max_step_size>
+      <ode>
+        <solver>
+          <type>quick</type>
+          <iters>200</iters>
+        </solver>
+      </ode>
+    </physics>
+
+    <scene>
+      <origin_visual>false</origin_visual>
+      <ambient>0.4 0.4 0.4 1</ambient>
+      <background>224 243 249 10</background>
+      <shadows>true</shadows>
+      <grid>false</grid>
+      <sky>
+        <clouds>
+          <speed>0</speed>
+          <humidity>0.9</humidity>
+          <mean_size>0.9</mean_size>
+        </clouds>
+      </sky>
+
+      <fog>
+         <color>1 1 1 1</color>
+         <type>linear</type>
+         <density>.5</density>
+         <start>1</start>
+         <end>70</end>
+      </fog>
+
+    </scene>
+
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <include>
+      <uri>model://landscape/plain_snow</uri>
+      <static>true</static>
+      <pose>0 0 0  0 0 0</pose>
+    </include>
+
+<!--     <include>
+      <static>true</static>
+      <uri>model://landscape/colibrator</uri>
+      <static>true</static>
+      <pose>1 0 1  0 0 1.57</pose>
+    </include> -->
+
+    <include>
+      <static>true</static>
+      <uri>model://landscape/house</uri>
+      <pose>50 5 .01  0 0 3.14</pose>
+      <name>house1</name>
+    </include>
+    
+    <include>
+      <static>true</static>
+      <uri>model://landscape/lamp_post</uri>
+      <pose>58 4 .01  0 0 -1.57</pose>
+      <name>lamp_post</name>
+    </include>
+
+    <include>
+      <static>true</static>
+      <uri>model://landscape/lamp_post</uri>
+      <pose>58 10 .01  0 0 -1.57</pose>
+      <name>lamp_post2</name>
+    </include>
+
+    <include>
+      <static>true</static>
+      <uri>model://landscape/person_walking</uri>
+      <pose>-14 23 .01  0 0 0</pose>
+      <name>human1</name>
+    </include>
+    <!-- <include> -->
+    <!--   <static>true</static> -->
+    <!--   <uri>model://landscape/man_lay</uri> -->
+    <!--   <pose>56 -37 0.01  0 0 0</pose> -->
+    <!--   <name>man_lay1</name> -->
+    <!-- </include> -->
+
+    <include>
+      <static>true</static>
+      <uri>model://landscape/jersey_barrier</uri>
+      <pose>44.5 -19 .01  0 0 -1.6</pose>
+      <name>barrier1</name>
+    </include>
+
+    <include>
+      <static>true</static>
+      <uri>model://landscape/jersey_barrier</uri>
+      <pose>44.5 -12.0 .01  0 0 0.22</pose>
+      <name>barrier2</name>
+    </include>
+
+    <include>
+      <static>true</static>
+      <uri>model://landscape/jersey_barrier</uri>
+      <pose>44.5 -9 .01  0 0 -1.0</pose>
+      <name>barrier3</name>
+    </include>
+
+    <!-- <include>  -->
+    <!--    <static>true</static>  -->
+    <!--    <uri>model://landscape/person_walking</uri>  -->
+    <!--    <pose>-26 -2 0.01  0 0 180</pose>  -->
+    <!--    <name>human4</name> -->
+    <!-- </include>  -->
+
+    <!-- <include> -->
+    <!--   <static>true</static> -->
+    <!--   <uri>model://landscape/car</uri> -->
+    <!--   <pose>49 -15 .01  0 0 -1.0</pose> -->
+    <!--   <name>car</name> -->
+    <!-- </include> -->
+
+    <include>
+      <static>true</static>
+      <uri>model://landscape/set_stones</uri>
+      <!-- <pose>49 -15 .01  0 0 -1.0</pose> -->
+      <pose>-0.59 -20.47 -0.05 0 0 2.68</pose>
+      <name>set_stones</name>
+    </include>
+
+    <!-- <include> -->
+    <!--   <static>true</static> -->
+    <!--   <uri>model://landscape/person_walking</uri> -->
+    <!--   <pose>47 6 .01  0 0 0</pose> -->
+    <!--   <name>human3</name> -->
+    <!-- </include> -->
+
+    <!-- <include> -->
+    <!--   <static>true</static> -->
+    <!--   <uri>model://landscape/person_walking</uri> -->
+      <!-- <pose>60 2 .01  0 0 0</pose> -->
+    <!--   <name>human2</name> -->
+    <!-- </include> -->
+    
+    <include>
+      <static>true</static>
+      <uri>model://landscape/house_3</uri>
+      <pose>60 -35 .01  0 0 1.57</pose>
+      <name>house_in_forest</name>
+    </include>
+    
+    <include>
+      <static>true</static>
+      <uri>model://landscape/stone_large</uri>
+      <pose>49 -51 -.15  0 0 0.34</pose>
+      <name>stone_large1</name>
+    </include>
+
+    <include>
+      <static>true</static>
+      <uri>model://landscape/stone_large</uri>
+      <pose>56 -46 -.1  0 0 -0.194</pose>
+      <name>stone_large2</name>
+    </include>
+
+    <include>
+      <static>true</static>
+      <uri>model://landscape/stone_large</uri>
+      <pose>-37.5 -2.6 -.1  0 0 -0.194</pose>
+      <name>stone_large3</name>
+    </include>
+<!--     <light type="spot" name="arctic_spot_light">
+      <pose>2 2 2 0 0 0</pose>
+      <cast_shadows>false</cast_shadows>
+      <diffuse>127 127 127 255</diffuse>
+      <specular>25 25 25 255</specular>
+    </light> -->
+<!-- 
+    <population name="stones">
+      <model name="stones">
+        <include>
+          <static>true</static>
+          <uri>model://landscape/stone</uri>
+        </include>
+      </model>
+      <pose>-35 -15 0.01 0 0 0</pose>
+      <box>
+        <size>10 10 0.1</size>
+      </box>
+      <model_count>30</model_count>
+      <distribution>
+        <type>random</type>
+      </distribution>
+    </population> -->
+
+    <!--
+
+    dummy script to execute in vim comand mode to get 5 random numbers in range (-100, 100):
+
+    r!python -c "from numpy.random import randint as r; r1=-100; r2=100; print(' {} {} {} {} {} '.format(r(r1,r2), r(r1,r2),r(r1,r2),r(r1,r2),r(r1,r2)))" 
+
+    just yank whole line in register and exec in cmd mode:
+    yank:
+    "ayy
+    exec:
+    :@a
+    
+    -->
+
+<!-- NOT RANDOM ICE -->
+    <!-- <include><uri>model://landscape/ice</uri><name>ice1</name><pose>8 -26 0 48  49  0</pose></include> -->
+    <!-- <include><uri>model://landscape/ice</uri><name>ice2</name><pose>-6 -27 0 46  139 0</pose></include> -->
+    <!-- <include><uri>model://landscape/ice</uri><name>ice3</name><pose>2  -34 0 327 331 0</pose></include> -->
+    <!-- <include><uri>model://landscape/ice</uri><name>ice4</name><pose>-5 -32 0 53  124 0</pose></include> -->
+    <!-- <include><uri>model://landscape/ice</uri><name>ice5</name><pose>7  -33 0 7 66  0</pose></include> -->
+    <!-- <include><uri>model://landscape/ice</uri><name>ice6</name><pose>-5 -28 0 123 310 0</pose></include> -->
+    <!-- <include><uri>model://landscape/ice</uri><name>ice7</name><pose>4  -34 0 16  260 0</pose></include> -->
+    <!-- <include><uri>model://landscape/ice</uri><name>ice8</name><pose>-2 -27 0 138 43  0</pose></include> -->
+    <!-- <include><uri>model://landscape/ice</uri><name>ice9</name><pose>7  -26 0 11  61  0</pose></include> -->
+    <!-- <include><uri>model://landscape/ice</uri><name>ice10</name><pose>6  -35 0 188 292 0</pose></include> -->
+
+<!-- NOT RANDOM TREES -->
+<!-- dense forest -->
+    <include><uri>model://landscape/oak_tree</uri><name>tree1</name><pose> -36 10  0.01  0 0 357 </pose></include>
+    <include><uri>model://landscape/pine_tree</uri><name>tree2</name><pose> -36 24  0.01  0 0 27  </pose></include>
+    <include><uri>model://landscape/pine_tree</uri><name>tree3</name><pose> -26 9 0.01  0 0 147 </pose></include>
+    <include><uri>model://landscape/pine_tree_broken</uri><name>broken_tree1</name><pose>  -40 21  0.01  0 0 67  </pose></include>
+    <include><uri>model://landscape/pine_tree</uri><name>tree4</name><pose> -23 8  0.01  0 0 13  </pose></include>
+    <include><uri>model://landscape/oak_tree</uri><name>tree5</name><pose> -29 12  0.01  0 0 347 </pose></include>
+    <include><uri>model://landscape/pine_tree</uri><name>tree6</name><pose> -39 18  0.01  0 0 29  </pose></include>
+    <include><uri>model://landscape/pine_tree</uri><name>tree7</name><pose> -27 21  0.01  0 0 49  </pose></include>
+    <include><uri>model://landscape/pine_tree</uri><name>tree8</name><pose> -29 14  0.01  0 0 171 </pose></include>
+    <include><uri>model://landscape/pine_tree_broken</uri><name>broken_tree2</name><pose>  -27 16  0.01  0 0 245 </pose></include>
+    <include><uri>model://landscape/pine_tree</uri><name>tree9</name><pose> -32 21  0.01  0 0 194 </pose></include>
+    <include><uri>model://landscape/oak_tree</uri><name>tree10</name><pose> -25 18  0.01  0 0 46  </pose></include>
+    <include><uri>model://landscape/pine_tree</uri><name>tree11</name><pose> -28 10  0.01  0 0 97  </pose></include>
+    <include><uri>model://landscape/pine_tree</uri><name>tree12</name><pose> -32 14  0.01  0 0 301 </pose></include>
+    <include><uri>model://landscape/pine_tree</uri><name>tree13</name><pose> -27 10  0.01  0 0 288 </pose></include>
+    <include><uri>model://landscape/oak_tree</uri><name>tree14</name><pose> -29 15  0.01  0 0 256 </pose></include>
+    <include><uri>model://landscape/pine_tree</uri><name>tree15</name><pose> -39 9 0.01  0 0 43  </pose></include>
+
+<!-- thin forest -->
+    <!-- r!python -c "from numpy.random import randint as r; print(' {} {} 0.01 0 0  {} '.format(r(-55,-25),r(-40,-10),r(360)))" --> 
+    <include><uri>model://landscape/pine_tree</uri><name>tree100</name><pose> -32 -32 0.01 0 0  21 </pose></include>
+    <include><uri>model://landscape/pine_tree_broken</uri><name>tree101</name><pose> -28 -17 0.01 0 0  96 </pose></include>
+    <include><uri>model://landscape/oak_tree</uri><name>tree102</name><pose> -27 -35 0.01 0 0  19 </pose></include>
+    <include><uri>model://landscape/pine_tree</uri><name>tree103</name><pose> -37 -16 0.01 0 0  339 </pose></include>
+    <include><uri>model://landscape/pine_tree</uri><name>tree104</name><pose> -35 -21 0.01 0 0  154 </pose></include>
+    <include><uri>model://landscape/pine_tree_broken</uri><name>tree105</name><pose> -52 -38 0.01 0 0  196 </pose></include>
+    <include><uri>model://landscape/oak_tree</uri><name>tree106</name><pose> -51 -29 0.01 0 0  48 </pose></include>
+    <include><uri>model://landscape/pine_tree</uri><name>tree107</name><pose> -41 -38 0.01 0 0  286 </pose></include>
+    <include><uri>model://landscape/pine_tree</uri><name>tree108</name><pose> -38 -29 0.01 0 0  1 </pose></include>
+    <include><uri>model://landscape/pine_tree</uri><name>tree109</name><pose> -44 -33 0.01 0 0  56 </pose></include>
+    <include><uri>model://landscape/oak_tree</uri><name>tree110</name><pose> -43 -21 0.01 0 0  71 </pose></include>
+    <include><uri>model://landscape/pine_tree</uri><name>tree111</name><pose> -34 -37 0.01 0 0  204 </pose></include>
+    <include><uri>model://landscape/pine_tree</uri><name>tree112</name><pose> -28 -26 0.01 0 0  334 </pose></include>
+    <include><uri>model://landscape/oak_tree</uri><name>tree113</name><pose> -48 -21 0.01 0 0  139 </pose></include>
+    <include><uri>model://landscape/pine_tree</uri><name>tree114</name><pose> -48 -32 0.01 0 0  29 </pose></include>
+    <include><uri>model://landscape/pine_tree</uri><name>tree115</name><pose> -46 -14 0.01 0 0  348 </pose></include>
+    <include><uri>model://landscape/pine_tree_broken</uri><name>tree116</name><pose> -46 -38 0.01 0 0  8 </pose></include>
+
+
+<!-- large forest -->
+    <!-- r!python -c "from numpy.random import randint as r; print(' {} {} 0.01 0 0  {} '.format(r(35,70),r(-70,-30),r(360)))" --> 
+    <include><uri>model://landscape/oak_tree</uri><name>tree200</name><pose> 44 -49 0.01 0 0  77 </pose></include>
+    <include><uri>model://landscape/oak_tree</uri><name>tree201</name><pose> 45 -65 0.01 0 0  213 </pose></include>
+    <include><uri>model://landscape/pine_tree</uri><name>tree202</name><pose> 65 -49 0.01 0 0  154 </pose></include>
+    <include><uri>model://landscape/pine_tree</uri><name>tree203</name><pose> 31 -75 0.01 0 0  27 </pose></include>
+    <include><uri>model://landscape/pine_tree</uri><name>tree204</name><pose> 54 -69 0.01 0 0  209 </pose></include>
+    <include><uri>model://landscape/oak_tree</uri><name>tree205</name><pose> 35 -43 0.01 0 0  259 </pose></include>
+    <include><uri>model://landscape/pine_tree</uri><name>tree206</name><pose> 54 -62 0.01 0 0  311 </pose></include>
+    <include><uri>model://landscape/pine_tree</uri><name>tree207</name><pose> 42 -70 0.01 0 0  347 </pose></include>
+    <include><uri>model://landscape/pine_tree</uri><name>tree208</name><pose> 69 -47 0.01 0 0  289 </pose></include>
+    <include><uri>model://landscape/oak_tree</uri><name>tree209</name><pose> 46 -35 0.01 0 0  236 </pose></include>
+    <include><uri>model://landscape/pine_tree_broken</uri><name>tree210</name><pose> 58 -47 0.01 0 0  345 </pose></include>
+    <include><uri>model://landscape/pine_tree</uri><name>tree211</name><pose> 51 -47 0.01 0 0  175 </pose></include>
+    <include><uri>model://landscape/pine_tree</uri><name>tree212</name><pose> 66 -59 0.01 0 0  109 </pose></include>
+    <include><uri>model://landscape/pine_tree_broken</uri><name>tree213</name><pose> 30 -44 0.01 0 0  23 </pose></include>
+    <include><uri>model://landscape/pine_tree</uri><name>tree214</name><pose> 54 -31 0.01 0 0  104 </pose></include>
+    <include><uri>model://landscape/oak_tree</uri><name>tree215</name><pose> 60 -22 0.01 0 0  131 </pose></include>
+    <include><uri>model://landscape/pine_tree</uri><name>tree216</name><pose> 23 -48 0.01 0 0  348 </pose></include>
+    <include><uri>model://landscape/pine_tree</uri><name>tree217</name><pose> 58 -61 0.01 0 0  307 </pose></include>
+    <include><uri>model://landscape/pine_tree</uri><name>tree218</name><pose> 39 -34 0.01 0 0  161 </pose></include>
+    <include><uri>model://landscape/pine_tree</uri><name>tree219</name><pose> 35 -63 0.01 0 0  315 </pose></include>
+    <include><uri>model://landscape/oak_tree</uri><name>tree220</name><pose> 21 -65 0.01 0 0  192 </pose></include>
+
+<!-- lone objects near a cliff  -->
+    <!-- r!python -c "from numpy.random import randint as r; print(' {} {} 0.01 0 0  {} '.format(r(55,60),r(35,55),r(360)))" --> 
+    <include><uri>model://landscape/pine_tree</uri><name>tree300</name><pose> 55 47 0.01 0 0  260 </pose></include>
+    <include><uri>model://landscape/pine_tree_broken</uri><name>tree301</name><pose> 58 52 0.01 0 0  260 </pose></include>
+    <include><uri>model://landscape/oak_tree</uri><name>tree302</name><pose> 65 45 0.01 0 0  161 </pose></include>
+    <include><uri>model://landscape/pine_tree</uri><name>tree303</name><pose> 72 35 0.01 0 0  46 </pose></include>
+    <include><uri>model://landscape/pine_tree_broken</uri><name>tree304</name><pose> 68 40 0.01 0 0  271 </pose></include>
+
+    <include><uri>model://landscape/stone_large</uri><name>stone_large100</name><pose>55 46.5 0.01 0 0  306 </pose></include>
+    <include><uri>model://landscape/stone_large</uri><name>stone_large101</name><pose>59 51 0.01 0 0  96 </pose></include>
+    <include><uri>model://landscape/stone_large</uri><name>stone_large102</name><pose>57 37 0.01 0 0  123 </pose></include>
+
+
+<!-- NOT RANDOM BUTTES -->
+    <include><uri>model://landscape/butte</uri><name>butte1</name><pose> 14  -37 0.01  0 0 187 </pose></include>
+    <include><uri>model://landscape/butte</uri><name>butte2</name><pose> 25  -34 0.01  0 0 153 </pose></include>
+    <include><uri>model://landscape/butte</uri><name>butte3</name><pose> 19  -40 0.01  0 0 40  </pose></include>
+    <include><uri>model://landscape/butte</uri><name>butte4</name><pose> 22  -34 0.01  0 0 59  </pose></include>
+    <include><uri>model://landscape/butte</uri><name>butte5</name><pose> 21  -28 0.01  0 0 15  </pose></include>
+    <include><uri>model://landscape/butte</uri><name>butte6</name><pose> 13  -33 0.01  0 0 305 </pose></include>
+    <include><uri>model://landscape/butte</uri><name>butte7</name><pose> 15  -29 0.01  0 0 295 </pose></include>
+    <include><uri>model://landscape/butte</uri><name>butte8</name><pose> 25  -40 0.01  0 0 313 </pose></include>
+    <include><uri>model://landscape/butte</uri><name>butte9</name><pose> 13  -25 0.01  0 0 73  </pose></include>
+    <include><uri>model://landscape/butte</uri><name>butte10</name><pose> 26  -28 0.01  0 0 99  </pose></include>
+
+
+<!-- obj on the island  -->
+    <include><uri>model://landscape/pine_tree</uri><name>tree404</name><static>true</static><pose> 171 -20 1 0 0 0</pose></include>
+    <include><uri>model://landscape/pine_tree</uri><name>tree405</name><static>true</static><pose> 174 -23 1 0 0 0</pose></include>
+    <include><uri>model://landscape/oak_tree</uri><name>tree406</name><static>true</static><pose> 178 -5 2 0 0 0</pose></include>
+
+
+<!-- <!-1- NOT RANDOM STONES -1-> -->
+<!--     <include><uri>model://landscape/stone</uri><name>stone1</name><static>true</static><pose>  -33 -13 0.01  0 0 102 </pose></include> -->
+<!--     <include><uri>model://landscape/stone</uri><name>stone2</name><static>true</static><pose>  -32 -10 0.01  0 0 154 </pose></include> -->
+<!--     <include><uri>model://landscape/stone</uri><name>stone3</name><static>true</static><pose>  -38 -16 0.01  0 0 122 </pose></include> -->
+<!--     <include><uri>model://landscape/stone</uri><name>stone4</name><static>true</static><pose>  -33 -16 0.01  0 0 262 </pose></include> -->
+<!--     <include><uri>model://landscape/stone</uri><name>stone5</name><static>true</static><pose>  -37 -19 0.01  0 0 67  </pose></include> -->
+<!--     <include><uri>model://landscape/stone</uri><name>stone6</name><static>true</static><pose>  -39 -15 0.01  0 0 137 </pose></include> -->
+<!--     <include><uri>model://landscape/stone</uri><name>stone7</name><static>true</static><pose>  -30 -19 0.01  0 0 93  </pose></include> -->
+<!--     <include><uri>model://landscape/stone</uri><name>stone8</name><static>true</static><pose>  -35 -18 0.01  0 0 343 </pose></include> -->
+<!--     <include><uri>model://landscape/stone</uri><name>stone9</name><static>true</static><pose>  -30 -10 0.01  0 0 129 </pose></include> -->
+<!--     <include><uri>model://landscape/stone</uri><name>stone10</name><static>true</static><pose>  -38 -13 0.01  0 0 132 </pose></include> -->
+<!--     <include><uri>model://landscape/stone</uri><name>stone11</name><static>true</static><pose>  -32 -13 0.01  0 0 69  </pose></include> -->
+<!--     <include><uri>model://landscape/stone</uri><name>stone12</name><static>true</static><pose>  -31 -11 0.01  0 0 258 </pose></include> -->
+<!--     <include><uri>model://landscape/stone</uri><name>stone13</name><static>true</static><pose>  -30 -19 0.01  0 0 242 </pose></include> -->
+<!--     <include><uri>model://landscape/stone</uri><name>stone14</name><static>true</static><pose>  -38 -14 0.01  0 0 123 </pose></include> -->
+<!--     <include><uri>model://landscape/stone</uri><name>stone15</name><static>true</static><pose>  -35 -18 0.01  0 0 33  </pose></include> -->
+<!--     <include><uri>model://landscape/stone</uri><name>stone16</name><static>true</static><pose>  -37 -15 0.01  0 0 42  </pose></include> -->
+<!--     <include><uri>model://landscape/stone</uri><name>stone17</name><static>true</static><pose>  -39 -11 0.01  0 0 222 </pose></include> -->
+<!--     <include><uri>model://landscape/stone</uri><name>stone18</name><static>true</static><pose>  -38 -18 0.01  0 0 352 </pose></include> -->
+<!--     <include><uri>model://landscape/stone</uri><name>stone19</name><static>true</static><pose>  -36 -18 0.01  0 0 274 </pose></include> -->
+<!--     <include><uri>model://landscape/stone</uri><name>stone20</name><static>true</static><pose>  -30 -18 0.01  0 0 349 </pose></include> -->
+<!--     <include><uri>model://landscape/stone</uri><name>stone21</name><static>true</static><pose>  -37 -14 0.01  0 0 24  </pose></include> -->
+<!--     <include><uri>model://landscape/stone</uri><name>stone22</name><static>true</static><pose>  -38 -11 0.01  0 0 100 </pose></include> -->
+<!--     <include><uri>model://landscape/stone</uri><name>stone23</name><static>true</static><pose>  -30 -12 0.01  0 0 28  </pose></include> -->
+<!--     <include><uri>model://landscape/stone</uri><name>stone24</name><static>true</static><pose>  -39 -12 0.01  0 0 222 </pose></include> -->
+<!--     <include><uri>model://landscape/stone</uri><name>stone25</name><static>true</static><pose>  -32 -17 0.01  0 0 330 </pose></include> -->
+<!--     <include><uri>model://landscape/stone</uri><name>stone26</name><static>true</static><pose>  -38 -16 0.01  0 0 95  </pose></include> -->
+<!--     <include><uri>model://landscape/stone</uri><name>stone27</name><static>true</static><pose>  -32 -10 0.01  0 0 354 </pose></include> -->
+<!--     <include><uri>model://landscape/stone</uri><name>stone28</name><static>true</static><pose>  -38 -13 0.01  0 0 268 </pose></include> -->
+<!--     <include><uri>model://landscape/stone</uri><name>stone29</name><static>true</static><pose>  -40 -12 0.01  0 0 50  </pose></include> -->
+<!--     <include><uri>model://landscape/stone</uri><name>stone30</name><static>true</static><pose>  -36 -20 0.01  0 0 306 </pose></include> -->
+<!--     <include><uri>model://landscape/stone</uri><name>stone31</name><static>true</static><pose>  -33 -18 0.01  0 0 341 </pose></include> -->
+
+
+       <!--actor name="animated_car">
+        <link name="link">
+          <visual name="visual">
+            <geometry>
+              <mesh>
+                <uri>model://platform_to_follow/follow_platform.dae</uri> 
+              </mesh>
+            </geometry>
+          </visual>
+        </link>
+        <script>
+          <loop>true</loop>
+          <delay_start>0.000000</delay_start>
+          <auto_start>true</auto_start>
+          <trajectory id="0" type="square">
+             <waypoint>
+                <time>0.0</time>
+                <pose>-10 -10 0 0 0 2.35</pose>
+             </waypoint>
+             <waypoint>
+                <time>5.0</time>
+                <pose>-10 10 0 0 0 0.785</pose>
+             </waypoint>
+             <waypoint>
+                <time>10.0</time>
+                <pose>10 10 0 0 0 -0.785</pose>
+             </waypoint>
+             <waypoint>
+                <time>15.0</time>
+                <pose>10 -10 0 0 0 -2.35</pose>
+             </waypoint>
+             <waypoint>
+                <time>20.0</time>
+                <pose>-10 -10 0 0 0 2.35</pose>
+             </waypoint>
+          </trajectory>
+        </script>
+      </actor-->
+
+  </world>
+</sdf>
+
+

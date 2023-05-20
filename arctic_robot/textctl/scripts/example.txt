@@ -1,0 +1,19 @@
+to start
+continue
+stop 
+continue
+move 10 -11
+move -10% 11%
+move 10 01%
+move -19% 100
+to pos 2 3 45
+to pos 2 -3 -180
+to next 13
+to next
+get pos
+get start
+get finish
+get next
+get camera 8
+get depth 1
+get route_len

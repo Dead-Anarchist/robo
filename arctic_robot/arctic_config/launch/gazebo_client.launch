@@ -1,0 +1,6 @@
+<launch>
+  <env name="GAZEBO_MODEL_PATH"
+    value="$(find arctic_model_gazebo)/../models:$(optenv GAZEBO_MODEL_PATH)"/>
+
+  <node pkg="arctic_config" type="gz_script.bash" name="gz_script"/>
+</launch>

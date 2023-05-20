@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="oak_tree">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <pose>0 0 2 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>3 3 4</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="branch">
+        <geometry>
+          <mesh>
+            <uri>model://landscape/oak_tree/meshes/oak_tree.dae</uri>
+            <submesh>
+              <name>Branch</name>
+            </submesh>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://landscape/oak_tree/materials/scripts/</uri>
+            <uri>model://landscape/oak_tree/materials/textures/</uri>
+            <name>OakTree/Branch</name>
+          </script>
+        </material>
+      </visual>
+      <visual name="bark">
+        <geometry>
+          <mesh>
+            <uri>model://landscape/oak_tree/meshes/oak_tree.dae</uri>
+            <submesh>
+              <name>Bark</name>
+            </submesh>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://landscape/oak_tree/materials/scripts/</uri>
+            <uri>model://landscape/oak_tree/materials/textures/</uri>
+            <name>OakTree/Bark</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>

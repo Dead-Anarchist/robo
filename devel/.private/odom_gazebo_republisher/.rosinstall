@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/sanya/test_ws/devel/.private/odom_gazebo_republisher/setup.sh

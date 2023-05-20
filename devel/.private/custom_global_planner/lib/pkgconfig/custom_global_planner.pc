@@ -1,0 +1,8 @@
+prefix=/home/sanya/test_ws/devel/.private/custom_global_planner
+
+Name: custom_global_planner
+Description: Description of custom_global_planner
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

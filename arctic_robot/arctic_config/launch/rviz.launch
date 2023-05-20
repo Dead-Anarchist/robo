@@ -1,0 +1,10 @@
+<launch>
+  <arg name="robot" default="$(env ROBOT)"/>
+
+  <!-- URDF description exclusively for rviz -->
+  <param name="$(arg robot)/rviz_robot_description"
+    command="$(find xacro)/xacro --inorder '$(find arctic_model_description)/urdf/arctic_model.xacro'"/>
+  
+  <!-- Visualization -->
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find arctic_config)/config/arctic.rviz"/>
+</launch>

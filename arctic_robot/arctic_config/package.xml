@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>arctic_config</name>
+  <version>1.0.0</version>
+  <description>The arctic_config package</description>
+
+  <maintainer email="rovboma@gmail.com">Maksim Rovbo</maintainer>
+
+  <license>TODO</license>
+
+  <author email="rovboma@gmail.com">Maksim Rovbo</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>global_planner</depend>
+  <depend>teb_local_planner</depend>
+  <depend>dwa_local_planner</depend>
+  <depend>velodyne</depend>
+  <depend>velodyne_description</depend>
+  <depend>map_server</depend>
+  <depend>move_base</depend>
+
+</package>

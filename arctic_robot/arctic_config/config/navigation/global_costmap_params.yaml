@@ -1,0 +1,16 @@
+global_costmap:
+  plugins: 
+    - {name: static_layer,  type: "costmap_2d::StaticLayer"}
+    - {name: inflation_layer,  type: "costmap_2d::InflationLayer"}
+
+  global_frame: map
+  robot_base_frame: base_link
+
+  update_frequency: 5.
+  publish_frequency: 2.
+
+  # is always overriden by the static map config, but should be set here to the same value just to be sure
+  resolution: 0.5
+
+  always_send_full_costmap: false
+  rolling_window: false

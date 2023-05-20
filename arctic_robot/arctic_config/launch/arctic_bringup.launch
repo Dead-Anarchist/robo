@@ -1,0 +1,20 @@
+<launch>
+  <arg name="robot" default="default_robot"/>
+
+  <arg name="rviz_gui" default="true"/>
+
+  <include file="$(find arctic_config)/launch/arctic_software.launch">
+    <arg name="output" value="screen"/>
+    <arg name="robot" value="$(arg robot)"/>
+  </include>
+
+  <include file="$(find arctic_config)/launch/user_interface_output.launch">
+    <arg name="output" value="screen"/>
+    <arg name="robot" value="$(arg robot)"/>
+  </include>
+
+  <include if="$(arg rviz_gui)"
+    file="$(find arctic_config)/launch/rviz.launch">
+    <arg name="robot" value="$(arg robot)"/>
+  </include>
+</launch>

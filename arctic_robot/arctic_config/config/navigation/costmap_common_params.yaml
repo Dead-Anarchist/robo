@@ -1,0 +1,44 @@
+transform_tolerance: 0.2
+
+always_send_full_costmap: true
+
+# for global planning inflation of lethal obstacles
+# manually calculated from the footprint
+robot_radius: 0.9
+
+# looks like footprint should not be used with robot_radius (either or)
+# some planners may use this footprint or robot_radius
+# teb seems to use its own parameter for the footprint
+#footprint: [[0.55, 0.56], [-0.55, 0.56], [-0.55, -0.56], [0.55, -0.56]]
+
+static_layer:
+  unknown_cost_value: -1
+  lethal_cost_threshold: 254
+  first_map_only: true
+  subscribe_to_updates: false
+  track_unknown_space: true
+  use_maximum: true
+  trinary_costmap: true
+  max_obstacle_height: 3.0
+
+inflation_layer:
+  inflation_radius: 20.
+  cost_scaling_factor: 1.0
+
+obstacle_layer:
+  observation_sources: velodyne_points
+
+  track_unknown_space: true
+  footprint_clearing_enabled: true
+  combination_method: 1
+
+  velodyne_points:
+    sensor_frame: ""  # empty means 'read from topic'
+    data_type: PointCloud2
+    topic: /$(arg robot)/velodyne_points2
+    marking: true
+    clearing: true
+    min_obstacle_height: 0.5  # height where obstacles are too high to drive through
+    max_obstacle_height: 1.5
+    obstacle_range: 9.
+    raytrace_range: 9.5

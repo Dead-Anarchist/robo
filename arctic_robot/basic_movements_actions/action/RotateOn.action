@@ -1,0 +1,7 @@
+float64 angle
+float64 velocity_coeff
+---
+bool success
+float64 error_value
+---
+float64 error_value

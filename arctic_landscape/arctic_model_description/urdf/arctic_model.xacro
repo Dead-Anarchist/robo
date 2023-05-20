@@ -1,0 +1,469 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="arctic_model" >
+    <!--  <xacro:property name="pi" value="3.14159265359"/> -->
+  <xacro:include filename="$(find hector_sensors_description)/urdf/sonar_sensor.urdf.xacro"/>
+  <xacro:property name="base_len" value="1.039"/>
+  <xacro:property name="base_shift" value="0.20"/>
+  <xacro:property name="base_w" value="0.8"/>
+  <xacro:property name="base_h" value="0.685"/>
+  <xacro:property name="base_r" value="0.2"/>
+  <xacro:property name="wheel_r" value="0.22"/>
+  <xacro:property name="wheel_h" value="0.03"/>
+  <xacro:property name="wheel_dist_y" value="1."/>
+  <xacro:property name="wheel_dist_x" value="0.6"/>
+  <xacro:property name="dh" value="0.14"/>
+  <xacro:property name="dl" value="0.553"/>
+  <xacro:property name="sonar_shift" value="0.05"/>
+  <xacro:property name="sonar_dist" value="0.42"/>
+  <xacro:property name="wheel_rho" value="100"/>
+  <xacro:property name="robot_rho" value="1000"/>
+  <xacro:property name="wheel_friction" value="0.3"/>
+  <xacro:property name="cam_pan_h" value="0.3"/>
+  <!-- <link name="zero_base" /> -->
+  <gazebo reference="base_link">
+    <mu1>0</mu1>
+    <mu2>0</mu2>
+  </gazebo>
+
+  <link name="base_link" />
+
+
+  <joint name="zero_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="body_link"/>
+     <origin xyz="${base_len/2 - dl} 0 ${base_h/2 - dh}" rpy="0 0 0"/>
+  </joint>
+  <link name="body_link">
+    <visual>
+      <geometry>
+        <mesh filename="file://$(find arctic_model_description)/meshes/PlatformV3.dae"/>
+        <!-- <mesh filename="file://$(find arctic_model_description)/meshes/arctic_platform.dae"/> -->
+      </geometry>
+      <origin xyz="0 0 0" rpy="0 0 ${pi/2}"/>
+
+      <material name="blue">
+	    <color rgba="0 0 .8 1"/>
+      </material>
+
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="file://$(find arctic_model_description)/meshes/PlatformV3.dae"/>
+        <!-- <mesh filename="file://$(find arctic_model_description)/meshes/arctic_platform.dae"/> -->
+      </geometry>
+      <origin xyz="0 0 0" rpy="0 0 ${pi/2}"/>
+      <!-- <origin xyz="0.03 0 0.2"/> -->
+    </collision>
+    <inertial>
+      <mass value="${robot_rho*base_len*base_w*base_h}"/>
+      <inertia ixx="${1/12*robot_rho*base_len*base_w*base_h*(base_w*base_w + base_h*base_h)}" ixy="0.0" ixz="0.0" iyy="${1/12*robot_rho*base_len*base_w*base_h*(base_len*base_len + base_h*base_h)}" iyz="0.0" izz="${1/12*robot_rho*base_len*base_w*base_h*(base_w*base_w + base_len*base_len)}"/>
+    </inertial>
+  </link>
+  
+  <gazebo reference="body_link">
+     <material>Gazebo/Blue</material>
+     <mu1>0</mu1>
+     <mu2>0</mu2>
+  </gazebo>
+  
+  
+  <xacro:macro name="wheel" params="wh_name base_name dx dy">
+    <link name="${wh_name}_link">
+      <visual>
+        <geometry>
+          <cylinder length="${2*wheel_h}" radius="${wheel_r}"/>
+        </geometry>
+        <origin rpy="${pi/2} 0 0" xyz="0 0 0"/>
+        <material name="black">
+	  <color rgba="0 0 0 1"/>
+        </material>
+      </visual>
+      <collision>
+        <geometry>
+          <cylinder length="${wheel_h}" radius="${wheel_r}"/>
+        </geometry>
+        <origin rpy="${pi/2} 0 0" xyz="0 0 0"/>
+      </collision>
+      <inertial>
+        <mass value="${wheel_rho*pi*wheel_r*wheel_r*wheel_h}"/>
+        <inertia izz="${0.25*wheel_rho*pi*wheel_r*wheel_r*wheel_h*wheel_r*wheel_r + 1/12*wheel_rho*pi*wheel_r*wheel_r*wheel_h*wheel_h*wheel_h}" ixy="0.0" ixz="0.0" ixx="${0.25*wheel_rho*pi*wheel_r*wheel_r*wheel_h*wheel_r*wheel_r + 1/12*wheel_rho*pi*wheel_r*wheel_r*wheel_h*wheel_h*wheel_h}" iyz="0.0" iyy="${0.5*wheel_rho*pi*wheel_r*wheel_r*wheel_h*wheel_r*wheel_r}"/>
+      </inertial>
+    </link>
+    <joint name="${wh_name}_j" type="continuous">
+      <origin xyz="${dx} ${dy} -0.1" rpy="0 0 0"/>
+      <parent link="${base_name}"/>
+      <axis xyz="0 1 0"/>
+      <child link="${wh_name}_link"/>
+      <dynamics damping="${wheel_friction}"/>
+    </joint>
+    <gazebo reference="${wh_name}_link">
+      <material>Gazebo/Black</material>
+      <mu1>1</mu1>
+      <dampingFactor>0.05</dampingFactor>
+      <kp>20000000</kp>
+      <kd>800000</kd>
+    </gazebo>
+  </xacro:macro>      
+  
+  <xacro:wheel wh_name="lwheel" base_name="body_link" dx="${wheel_dist_x/2}" dy="${wheel_dist_y/2}"  />
+  <xacro:wheel wh_name="rwheel" base_name="body_link" dx="${wheel_dist_x/2}" dy="${-wheel_dist_y/2}"  />
+  <xacro:wheel wh_name="lwheel3" base_name="body_link" dx="${-wheel_dist_x/2}" dy="${wheel_dist_y/2}" />
+  <xacro:wheel wh_name="rwheel3" base_name="body_link" dx="${-wheel_dist_x/2}" dy="${-wheel_dist_y/2}" />
+
+  
+  <xacro:macro name="sonar" params="sonar_name base_name dx dy">
+    <xacro:sonar_sensor name='${sonar_name}' parent='${base_name}' ros_topic='/sonar' update_rate='5' min_range='0.01' max_range='5' field_of_view='${pi/12}' ray_count='1'>
+      <origin xyz='${dx+0.25} ${dy} 0.305' rpy='0 0 0'/>
+    </xacro:sonar_sensor>
+  </xacro:macro>
+  
+  <xacro:sonar sonar_name="arctic_model_left_rf" base_name="body_link" dx="${base_shift+sonar_shift}" dy="${sonar_dist/2}" />
+  <xacro:sonar sonar_name="arctic_model_right_rf" base_name="body_link" dx="${base_shift+sonar_shift}" dy="${-sonar_dist/2}" />
+  
+  <xacro:macro name="whtransmission" params="joint">
+    <transmission name="${joint}_transm">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${joint}">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${joint}_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+  </xacro:macro>    
+
+  <xacro:whtransmission joint="rwheel_j" />
+  <xacro:whtransmission joint="lwheel_j" />
+  <xacro:whtransmission joint="rwheel3_j" />
+  <xacro:whtransmission joint="lwheel3_j" />
+
+  <xacro:arg name="gpu" default="false"/>
+  <xacro:property name="gpu" value="$(arg gpu)" />
+
+  <!-- manipulator -->
+  
+  <link name="manip_base_link">
+      <visual>
+        <geometry>
+          <cylinder length="0.01" radius="0.05"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <material name="black">
+	  <color rgba="0 0 0 1"/>
+        </material>
+      </visual>
+      <collision>
+        <geometry>
+          <cylinder length="0.01" radius="0.05"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+      </collision>
+      <inertial>
+        <mass value="0.01"/>
+        <inertia izz="1e-4" ixy="0.0" ixz="0.0" ixx="1e-4" iyz="0.0" iyy="1e-4"/>
+      </inertial>
+    </link>
+    <joint name="manip_base_link_j" type="continuous">
+      <origin xyz="0 0 0.61" rpy="0 0 0"/>
+      <parent link="base_link"/>
+      <axis xyz="0 0 1"/>
+      <child link="manip_base_link"/>
+      <dynamics damping="${wheel_friction}"/>
+      <limit effort="10" velocity="10.0" />
+    </joint>
+    <transmission name="manip_base_link_transm">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="manip_base_link_j">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="manip_base_link_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission> 
+    
+    
+     <link name="manip_stock_link">
+      <visual>
+        <geometry>
+          <box size="1 0.01 0.01"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <material name="black">
+	  <color rgba="0 0 0 1"/>
+        </material>
+      </visual>
+      <collision>
+        <geometry>
+          <box size="1 0.01 0.01"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+      </collision>
+      <inertial>
+        <mass value="0.01"/>
+        <inertia izz="1e-4" ixy="0.0" ixz="0.0" ixx="1e-4" iyz="0.0" iyy="1e-4"/>
+      </inertial>
+    </link>
+    <joint name="manip_stock_link_j" type="prismatic">
+      <origin xyz="0 0 0.012" rpy="0 0 0"/>
+      <parent link="manip_base_link"/>
+      <axis xyz="1 0 0"/>
+      <child link="manip_stock_link"/>
+      <dynamics damping="${wheel_friction}"/>
+      <limit effort="10" velocity="10.0" lower="-0.01" upper="0.49" />
+    </joint> 
+    <transmission name="manip_stock_link_transm">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="manip_stock_link_j">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="manip_stock_link_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission> 
+    
+    <link name="manip_end_link">
+      <visual>
+        <geometry>
+          <!--box size="0.02 0.02 0.02"/-->
+          <mesh filename="file://$(find arctic_model_description)/meshes/manip_end.dae"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <material name="black">
+	  <color rgba="0 0 0 1"/>
+        </material>
+      </visual>
+      <collision>
+        <geometry>
+          <box size="0.02 0.02 0.02"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+      </collision>
+      <inertial>
+        <mass value="0.01"/>
+        <inertia izz="1e-4" ixy="0.0" ixz="0.0" ixx="1e-4" iyz="0.0" iyy="1e-4"/>
+      </inertial>
+    </link>
+    <joint name="manip_end_link_j" type="fixed">
+      <origin xyz="0.51 0 0" rpy="0 0 0"/>
+      <parent link="manip_stock_link"/>
+      <axis xyz="1 0 0"/>
+      <child link="manip_end_link"/>
+    </joint> 
+    
+    
+  <!-- =============== LIDAR =================== -->
+  <!-- LIDAR velodyne VLP-16 -->
+  <!-- <xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/>
+  <VLP-16 parent="base_link" name="velodyne" topic="/velodyne_points" hz="10" samples="440" gpu="${gpu}">
+    <origin xyz="0 0 1.1" rpy="0 0 0" />
+  </VLP-16> -->
+  <!-- LIDAR velodyne HDL-32 -->
+  <xacro:include filename="$(find velodyne_description)/urdf/HDL-32E.urdf.xacro"/>
+  <xacro:HDL-32E parent="base_link" name="/default_robot/velodyne2" topic="velodyne_points2" hz="10" samples="220" gpu="${gpu}">
+    <origin xyz="${base_shift*2} 0 0.75" rpy="0 0 0" />
+  </xacro:HDL-32E>
+
+  <!-- =============== CAMERAS =================== -->
+
+  <link name="camera_link1">
+    <visual>
+      <geometry>
+        <box size="0.05 0.05 0.05"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.05 0.05 0.05"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="0.001"/>
+      <inertia ixx="1e-12" ixy="0.0" ixz="0.0" iyy="1e-12" iyz="0.0" izz="1e-12"/>
+    </inertial>
+  </link>
+
+  <joint name="$camera_j1" type="fixed">
+    <origin xyz="${base_shift+0.33} 0 ${base_h/2-0.01}" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <axis xyz="0 1 0"/>
+    <child link="camera_link1"/>
+  </joint>
+   
+  <gazebo reference="camera_link1">
+    <material>Gazebo/Black</material>
+    <sensor type="camera" name="camera1">
+      <update_rate>30.0</update_rate>
+      <camera name="head">
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.02</near>
+          <far>300</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <!-- Noise is sampled independently per pixel on each frame.
+               That pixel's noise value is added to each of its color
+               channels, which at that point lie in the range [0,1]. -->
+          <mean>0.0</mean>
+          <stddev>0.007</stddev>
+        </noise>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>0.0</updateRate>
+        <cameraName>camera1</cameraName>
+        <imageTopicName>image_raw</imageTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+        <frameName>camera_link1</frameName>
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <link name="rotating_camera_mid_link">
+    <inertial>
+      <mass value="0.001"/>
+      <inertia ixx="1e-12" ixy="0.0" ixz="0.0" iyy="1e-12" iyz="0.0" izz="1e-12"/>
+    </inertial>
+  </link>
+
+  <joint name="rotating_camera_yaw_j" type="revolute">
+    <origin xyz="${base_shift+0.33} 0 ${base_h-0.01}" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <axis xyz="0 0 1"/>
+    <child link="rotating_camera_mid_link"/>
+    <dynamics damping="${wheel_friction}"/>
+    <limit lower="${-pi}" upper="${pi}" effort="1" velocity="5"/>
+  </joint>
+ 
+  <transmission name="rotating_camera_yaw_transm">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rotating_camera_yaw_j">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="rotating_camera_yaw_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission> 
+
+  <link name="rotating_camera_link">
+    <visual>
+      <geometry>
+        <box size="0.05 0.05 0.05"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.05 0.05 0.05"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="0.001"/>
+      <inertia ixx="1e-12" ixy="0.0" ixz="0.0" iyy="1e-12" iyz="0.0" izz="1e-12"/>
+    </inertial>
+  </link>
+
+  <joint name="rotating_camera_pitch_j" type="revolute">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="rotating_camera_mid_link"/>
+    <axis xyz="0 1 0"/>
+    <child link="rotating_camera_link"/>
+    <dynamics damping="${wheel_friction}"/>
+    <limit lower="${-pi}" upper="${pi}" effort="1" velocity="5"/>
+  </joint>
+  
+  <transmission name="rotating_camera_pitch_transm">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rotating_camera_pitch_j">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="rotating_camera_pitch_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission> 
+  
+  <gazebo reference="rotating_camera_link">
+    <material>Gazebo/Black</material>
+    <sensor type="camera" name="rotating_camera">
+      <update_rate>30.0</update_rate>
+      <camera name="head">
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.02</near>
+          <far>300</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <!-- Noise is sampled independently per pixel on each frame.
+               That pixel's noise value is added to each of its color
+               channels, which at that point lie in the range [0,1]. -->
+          <mean>0.0</mean>
+          <stddev>0.007</stddev>
+        </noise>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>0.0</updateRate>
+        <cameraName>rotating_camera</cameraName>
+        <imageTopicName>image_raw</imageTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+        <frameName>rotating_camera_link</frameName>
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+
+
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+        <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+        <legacyModeNS>true</legacyModeNS>
+        <!-- Control period is recommended to be the same as the world simulation period -->
+        <controlPeriod>0.001</controlPeriod>
+    </plugin>
+  </gazebo>
+
+  <gazebo>
+    <plugin name="p3d_base_controller" filename="libgazebo_ros_p3d.so">
+      <alwaysOn>true</alwaysOn>
+      <updateRate>10.0</updateRate>
+      <bodyName>base_link</bodyName>
+      <topicName>gazebo_ground_truth_odom</topicName>
+      <gaussianNoise>0.01</gaussianNoise>
+      <frameName>map</frameName>
+      <xyzOffsets>0 0 0</xyzOffsets>
+      <rpyOffsets>0 0 0</rpyOffsets>
+    </plugin>
+  </gazebo>
+</robot>

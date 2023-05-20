@@ -1,0 +1,115 @@
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50  
+
+  # Position Controllers ---------------------------------------
+  lwheel_state_controller:
+    type: velocity_controllers/JointVelocityController
+    joint: lwheel_j
+    pid: {p: 1.0, i: 0.1, d: 0.1, i_clamp: 100}
+  rwheel_state_controller:
+    type: velocity_controllers/JointVelocityController
+    joint: rwheel_j
+    pid: {p: 1.0, i: 0.1, d: 0.1, i_clamp: 100}
+  lwheel3_state_controller:
+    type: velocity_controllers/JointVelocityController
+    joint: lwheel3_j
+    pid: {p: 1.0, i: 0.1, d: 0.1, i_clamp: 100}
+  rwheel3_state_controller:
+    type: velocity_controllers/JointVelocityController
+    joint: rwheel3_j
+    pid: {p: 1.0, i: 0.1, d: 0.1, i_clamp: 100}
+
+  camera_yaw_controller:
+    type: position_controllers/JointPositionController
+    joint: rotating_camera_yaw_j
+    pid: {p: 1., i: 0.1, d: 0.1, i_clamp: 100}
+  camera_pitch_controller:
+    type: position_controllers/JointPositionController
+    joint: rotating_camera_pitch_j
+    pid: {p: 1., i: 0.1, d: 0.1, i_clamp: 100}
+
+  manip_rotation_controller:
+    type: position_controllers/JointPositionController
+    joint: manip_base_link_j
+    pid: {p: 5., i: 0.1, d: 0.1, i_clamp: 100}
+  manip_stock_controller:
+    type: position_controllers/JointPositionController
+    joint: manip_stock_link_j
+    pid: {p: 1., i: 0.1, d: 0.1, i_clamp: 100}
+
+  mobile_base_controller:
+    type: diff_drive_controller/DiffDriveController
+    left_wheel: [lwheel_j, lwheel3_j]
+    right_wheel: [rwheel_j, rwheel3_j]
+    pose_covariance_diagonal: [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
+    twist_covariance_diagonal: [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
+
+    wheel_separation: 1.
+    wheel_radius: 0.22
+
+    base_frame_id: base_link
+
+    enable_odom_tf: false
+    publish_cmd: True
+    allow_multiple_cmd_vel_publishers: True
+
+    linear:
+      x:
+        has_velocity_limits: true
+        max_velocity: 2.
+        min_velocity: -0.5
+
+        has_acceleration_limits: true
+        max_acceleration: 2.
+        min_acceleration: -2.
+
+        has_jerk_limits: false
+        # max_jerk: 5.
+      angular:
+        z:
+          has_velocity_limits: true
+          max_velocity: 1.
+
+          has_acceleration_limits: true
+          max_acceleration: 2.5
+
+          has_jerk_limits: false
+          # max_jerk: 2.5
+
+#  gazebo_ros_control:
+#    pid_gains:
+#      lwheel_j:
+#        p: 1.
+#        i: 0.
+#        d: 0.
+#      rwheel_j:
+#        p: 1.
+#        i: 0.
+#        d: 0.
+#      lwheel3_j:
+#        p: 1.
+#        i: 0.
+#        d: 0.
+#      rwheel3_j:
+#        p: 1.
+#        i: 0.
+#        d: 0.
+#      rotating_camera_yaw_j:
+#        p: 1.
+#        i: 0.
+#        d: 0.
+#      rotating_camera_pitch_j:
+#        p: 1.
+#        i: 0.
+#        d: 0.
+#      manip_base_link_j:
+#        p: 1.
+#        i: 0.
+#        d: 0.
+#      manip_stock_link_j:
+#        p: 1.
+#        i: 0.
+#        d: 0.
+        

@@ -1,0 +1,46 @@
+Symlinking /home/sanya/test_ws/devel/./local_setup.bash
+Symlinking /home/sanya/test_ws/devel/./_setup_util.py
+Symlinking /home/sanya/test_ws/devel/./cmake.lock
+Symlinking /home/sanya/test_ws/devel/./setup.sh
+Symlinking /home/sanya/test_ws/devel/./local_setup.zsh
+Symlinking /home/sanya/test_ws/devel/./local_setup.sh
+Symlinking /home/sanya/test_ws/devel/./setup.bash
+Symlinking /home/sanya/test_ws/devel/./env.sh
+Symlinking /home/sanya/test_ws/devel/./setup.zsh
+Symlinking /home/sanya/test_ws/devel/share/catkin_tools_prebuild/cmake/catkin_tools_prebuildConfig.cmake
+Symlinking /home/sanya/test_ws/devel/share/catkin_tools_prebuild/cmake/catkin_tools_prebuildConfig-version.cmake
+Symlinking /home/sanya/test_ws/devel/lib/pkgconfig/catkin_tools_prebuild.pc
+Cleaning: (/home/alexandra/test_ws/devel/.private/catkin_tools_prebuild/setup.bash, /home/alexandra/test_ws/devel/./setup.bash)
+Cleaning: (/home/alexandra/test_ws/devel/.private/catkin_tools_prebuild/cmake.lock, /home/alexandra/test_ws/devel/./cmake.lock)
+Cleaning: (/home/alexandra/test_ws/devel/.private/catkin_tools_prebuild/_setup_util.py, /home/alexandra/test_ws/devel/./_setup_util.py)
+Cleaning: (/home/alexandra/test_ws/devel/.private/catkin_tools_prebuild/setup.zsh, /home/alexandra/test_ws/devel/./setup.zsh)
+Cleaning: (/home/alexandra/test_ws/devel/.private/catkin_tools_prebuild/local_setup.zsh, /home/alexandra/test_ws/devel/./local_setup.zsh)
+Cleaning: (/home/alexandra/test_ws/devel/.private/catkin_tools_prebuild/env.sh, /home/alexandra/test_ws/devel/./env.sh)
+Cleaning: (/home/alexandra/test_ws/devel/.private/catkin_tools_prebuild/local_setup.bash, /home/alexandra/test_ws/devel/./local_setup.bash)
+Cleaning: (/home/alexandra/test_ws/devel/.private/catkin_tools_prebuild/local_setup.sh, /home/alexandra/test_ws/devel/./local_setup.sh)
+Cleaning: (/home/alexandra/test_ws/devel/.private/catkin_tools_prebuild/setup.sh, /home/alexandra/test_ws/devel/./setup.sh)
+Cleaning: (/home/alexandra/test_ws/devel/.private/catkin_tools_prebuild/lib/pkgconfig/catkin_tools_prebuild.pc, /home/alexandra/test_ws/devel/lib/pkgconfig/catkin_tools_prebuild.pc)
+Cleaning: (/home/alexandra/test_ws/devel/.private/catkin_tools_prebuild/share/catkin_tools_prebuild/cmake/catkin_tools_prebuildConfig-version.cmake, /home/alexandra/test_ws/devel/share/catkin_tools_prebuild/cmake/catkin_tools_prebuildConfig-version.cmake)
+Cleaning: (/home/alexandra/test_ws/devel/.private/catkin_tools_prebuild/share/catkin_tools_prebuild/cmake/catkin_tools_prebuildConfig.cmake, /home/alexandra/test_ws/devel/share/catkin_tools_prebuild/cmake/catkin_tools_prebuildConfig.cmake)
+Unlinking: /home/alexandra/test_ws/devel/./setup.bash
+Already unlinked: {}
+Unlinking: /home/alexandra/test_ws/devel/./_setup_util.py
+Already unlinked: {}
+Unlinking: /home/alexandra/test_ws/devel/./setup.zsh
+Already unlinked: {}
+Unlinking: /home/alexandra/test_ws/devel/./local_setup.zsh
+Already unlinked: {}
+Unlinking: /home/alexandra/test_ws/devel/./env.sh
+Already unlinked: {}
+Unlinking: /home/alexandra/test_ws/devel/./local_setup.bash
+Already unlinked: {}
+Unlinking: /home/alexandra/test_ws/devel/./local_setup.sh
+Already unlinked: {}
+Unlinking: /home/alexandra/test_ws/devel/./setup.sh
+Already unlinked: {}
+Unlinking: /home/alexandra/test_ws/devel/lib/pkgconfig/catkin_tools_prebuild.pc
+Already unlinked: {}
+Unlinking: /home/alexandra/test_ws/devel/share/catkin_tools_prebuild/cmake/catkin_tools_prebuildConfig-version.cmake
+Already unlinked: {}
+Unlinking: /home/alexandra/test_ws/devel/share/catkin_tools_prebuild/cmake/catkin_tools_prebuildConfig.cmake
+Already unlinked: {}

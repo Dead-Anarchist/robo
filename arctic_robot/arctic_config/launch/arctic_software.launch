@@ -1,0 +1,26 @@
+<launch>
+  <arg name="output" default="screen"/>
+  <arg name="robot" default="default_robot"/>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+    ns="$(arg robot)"/>
+
+  <!-- Connect odometry world-drift frame to map -->
+  <node pkg="tf" type="static_transform_publisher" name="static_odom_broadcaster"
+    args="0 0 0 0 0 0 1 map odom 100"
+    ns="$(arg robot)" />
+
+  <include file="$(find arctic_config)/launch/trajectory_navigation.launch">
+    <arg name="output" value="$(arg output)"/>
+  </include>
+
+  <node name="basic_movements_action_server" pkg="basic_movements_actions" type="basic_movements_actions_node.py" ns="$(arg robot)" output="$(arg output)">
+    <param name="forward_movement_velocity" value="2" />
+    <param name="backward_movement_velocity" value="-2" />
+    <param name="min_movement_velocity" value="0.5" />
+    <param name="rotation_velocity" value="0.5" />
+    <remap from="cmd_vel" to="mobile_base_controller/cmd_vel" />
+  </node>
+
+  
+</launch>

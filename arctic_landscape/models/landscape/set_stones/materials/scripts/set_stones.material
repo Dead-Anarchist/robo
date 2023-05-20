@@ -1,0 +1,39 @@
+material stones
+{
+  technique
+  {
+    pass
+    {
+      // ambient 0 0.5 0.5 1.0
+      // diffuse 0 1.0 1.0 1.0
+      // specular 0.0 0.0 0.0 1.0 0.5
+      // emissive 0.900000 0.900000 0.900000 1.000000
+
+      texture_unit
+      {
+         texture ../textures/stones_winter.png
+      // scale 0.5 0.5
+      }
+    }
+  }
+}
+
+material dyke
+{
+  technique
+  {
+    pass
+    {
+      // ambient 0 0.5 0.5 1.0
+      // diffuse 0 1.0 1.0 1.0
+      // specular 0.0 0.0 0.0 1.0 0.5
+      // emissive 0.900000 0.900000 0.900000 1.000000
+
+      texture_unit
+      {
+         texture ../textures/dyke_winter.png
+      // scale 0.5 0.5
+      }
+    }
+  }
+}

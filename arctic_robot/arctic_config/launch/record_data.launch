@@ -1,0 +1,15 @@
+<launch>
+  <arg name="BAG_PATH" default="$(env HOME)/bags"/>
+  <arg name="BAG_FILE" default="arctic_data.bag"/>
+
+  <!-- Maximum size of a single bag file (the recording will be split into several file after exceeding it) -->
+  <arg name="MAX_SPLIT_SIZE" default="6144"/>
+
+  <!-- Maximum number of splits (bag parts), after exceeding the oldest will be written over -->
+  <arg name="MAX_SPLITS" default="5"/>
+
+  <!-- Records various data, including sensors to a ROS bag file -->
+  <node name="rosbag_record" pkg="rosbag" type="record"
+    args="-a -O $(arg BAG_PATH)/$(arg BAG_FILE) --split --size=$(arg MAX_SPLIT_SIZE) --max-splits=$(arg MAX_SPLITS)"
+    />
+</launch>

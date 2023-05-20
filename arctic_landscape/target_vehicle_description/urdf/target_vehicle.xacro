@@ -1,0 +1,161 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="target_model" >
+  <xacro:property name="wheelbase" value="2"/>
+  <xacro:property name="gauge" value="2"/>
+  <xacro:property name="wheel_r" value="0.45"/>
+  <xacro:property name="wheel_h" value="0.15"/>
+  <xacro:property name="real_wheelbase" value="1"/>
+  <xacro:property name="real_gauge" value="1"/>
+  <xacro:property name="real_wheel_r" value="0.4"/>
+  <xacro:property name="real_wheel_h" value="0.05"/>
+  <xacro:property name="body_mass" value="5"/>
+  <xacro:property name="wheel_mass" value="0.2"/>
+
+  <link name="base_link" />
+
+  <joint name="zero_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="body_link"/>
+     <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+  <link name="body_link">
+    <visual>
+      <geometry>
+        <!--mesh filename="file://$(find target_vehicle_description)/meshes/target_vehicle.dae"/-->
+        <mesh filename="file://$(find target_vehicle_description)/meshes/follow_platform.dae"/>
+      </geometry>
+      <!--origin xyz="-1.1 0 -0.3" rpy="0 0 -1.57"/-->
+      <material name="red">
+	 <color rgba="1 0 0 1"/> 
+       </material> 
+    </visual>
+    <collision>
+      <geometry>
+        <box size="4 1.1 1" />
+      </geometry>
+      <origin xyz="-1 0 0.7" rpy="0 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="${body_mass}"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+      <origin xyz="-0.4 0 -0.5" />
+    </inertial>
+  </link>
+  
+  <gazebo reference="body_link">
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+  </gazebo>
+
+  <xacro:macro name="real_wheel" params="wh_name dx dy">
+    <link name="${wh_name}_link">
+      <collision>
+        <geometry>
+          <cylinder length="${real_wheel_h}" radius="${real_wheel_r}"/>
+        </geometry>
+        <origin rpy="${pi/2} 0 0" xyz="0 0 0"/>
+      </collision>
+      <inertial>
+        <mass value="${wheel_mass}"/>
+        <inertia izz="${0.25*wheel_mass*real_wheel_r*real_wheel_r + 1/12*wheel_mass*real_wheel_h*real_wheel_h}" ixy="0.0" ixz="0.0" ixx="${0.25*wheel_mass*real_wheel_r*real_wheel_r + 1/12*wheel_mass*real_wheel_h*real_wheel_h}" iyz="0.0" iyy="${0.5*wheel_mass*real_wheel_r*real_wheel_r}"/>
+      </inertial>
+    </link>
+    <joint name="${wh_name}_j" type="continuous">
+      <origin xyz="${dx} ${dy} ${-0.05-wheel_r+real_wheel_r}" rpy="0 0 0"/>
+      <parent link="body_link"/>
+      <axis xyz="0 1 0"/>
+      <child link="${wh_name}_link"/>
+      <dynamics damping="0.05"/>
+    </joint>
+    <gazebo reference="${wh_name}_link">
+      <material>Gazebo/Black</material>
+      <mu1>7</mu1>
+      <mu2>5</mu2>
+      <dampingFactor>0.05</dampingFactor>
+      <kp>40000000</kp>
+      <kd>20000000</kd>
+    </gazebo>
+    <transmission name="${wh_name}_j_transm">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${wh_name}_j">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${wh_name}_j_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      </actuator>
+    </transmission>
+  </xacro:macro>      
+  
+  <xacro:macro name="fake_wheel" params="wh_name dx dy">
+    <link name="${wh_name}_link">
+      <visual>
+        <geometry>
+          <cylinder length="${wheel_h}" radius="${wheel_r}"/>
+        </geometry>
+        <origin rpy="${pi/2} 0 0" xyz="0 0 0"/>
+        <material name="black">
+	  <color rgba="0 0 0 1"/>
+        </material>
+      </visual>
+    </link>
+    <joint name="${wh_name}_j" type="fixed">
+      <origin xyz="${dx} ${dy} -0.1" rpy="0 0 0"/>
+      <parent link="body_link"/>
+      <child link="${wh_name}_link"/>
+      <dynamics damping="0.25"/>
+    </joint>
+    <gazebo reference="${wh_name}_link">
+      <material>Gazebo/Black</material>
+    </gazebo>
+  </xacro:macro>      
+
+  <joint name="caster_joint" type="fixed">
+    <parent link="body_link"/>
+    <child link="caster_link"/>
+     <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+  <link name="caster_link">
+    <collision>
+      <geometry>
+        <sphere radius="0.1"/>
+      </geometry>
+      <origin xyz="-1 0 -0.4" rpy="0 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
+      <!--origin xyz="-1.05 0 -0.5" /-->
+    </inertial>
+  </link>
+    <gazebo reference="caster_link">
+      <mu1>0.001</mu1>
+      <mu2>0.01</mu2>
+    </gazebo>
+  <xacro:real_wheel wh_name="lwheel"  dx="0" dy="${real_gauge/2 + real_wheel_h/2 + 0.1}"  />
+  <xacro:real_wheel wh_name="rwheel"  dx="0" dy="${-real_gauge/2 - real_wheel_h/2 - 0.1}"  />
+  <xacro:fake_wheel wh_name="lwheelf"  dx="0" dy="${gauge/2 - wheel_h/2 }"  />
+  <xacro:fake_wheel wh_name="rwheelf"  dx="0" dy="${-gauge/2 + wheel_h/2 }"  />
+  <xacro:fake_wheel wh_name="lwheel2f"  dx="${-wheelbase}" dy="${gauge/2 - wheel_h/2 }" />
+  <xacro:fake_wheel wh_name="rwheel2f"  dx="${-wheelbase}" dy="${-gauge/2 + wheel_h/2 }" />
+
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+        <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+        <legacyModeNS>true</legacyModeNS>
+        <!-- Control period is recommended to be the same as the world simulation period -->
+        <controlPeriod>0.001</controlPeriod>
+    </plugin>
+    <plugin name="p3d_base_controller" filename="libgazebo_ros_p3d.so">
+      <alwaysOn>true</alwaysOn>
+      <updateRate>10.0</updateRate>
+      <bodyName>base_link</bodyName>
+      <topicName>target_ground_truth_odom</topicName>
+      <gaussianNoise>0.01</gaussianNoise>
+      <frameName>map</frameName>
+      <xyzOffsets>0 0 0</xyzOffsets>
+      <rpyOffsets>0 0 0</rpyOffsets>
+    </plugin>
+  </gazebo>
+
+</robot>

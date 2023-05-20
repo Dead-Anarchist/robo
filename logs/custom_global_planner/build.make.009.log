@@ -1,0 +1,33 @@
+[35m[1mScanning dependencies of target custom_global_planner_lib[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/custom_global_planner_lib.dir/src/custom_global_planner.cpp.o[0m
+[01m[K/home/sanya/test_ws/src/robot/custom_global_planner/src/custom_global_planner.cpp:294:[m[K [01;31m[Kerror: [m[Kunterminated argument list invoking macro "PyRun_SimpleString"
+  294 | };
+      | 
+[01m[K/home/sanya/test_ws/src/robot/custom_global_planner/src/custom_global_planner.cpp:[m[K In member function ‘[01m[Kvirtual bool custom_global_planner::CustomGlobalPlanner::makePlan(const PoseStamped&, const PoseStamped&, std::vector<geometry_msgs::PoseStamped_<std::allocator<void> > >&)[m[K’:
+[01m[K/home/sanya/test_ws/src/robot/custom_global_planner/src/custom_global_planner.cpp:97:27:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K;[m[K’ at end of input
+   97 |         [32m[KPyRun_SimpleString[m[K[01;31m[K([m[Ksys.path.append("/home/sanya/test_ws/src/robot/custom_global_planner/src/custom_global_planner/");
+      |         [32m[K~~~~~~~~~~~~~~~~~~[m[K[01;31m[K^[m[K
+      |                           [32m[K;[m[K
+[01m[K/home/sanya/test_ws/src/robot/custom_global_planner/src/custom_global_planner.cpp:97:9:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K}[m[K’ at end of input
+   97 |         [01;31m[KPyRun_SimpleString[m[K(sys.path.append("/home/sanya/test_ws/src/robot/custom_global_planner/src/custom_global_planner/");
+      |         [01;31m[K^~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/sanya/test_ws/src/robot/custom_global_planner/src/custom_global_planner.cpp:74:28:[m[K [01;36m[Knote: [m[Kto match this ‘[01m[K{[m[K’
+   74 |     if(pModule == nullptr) [01;36m[K{[m[K
+      |                            [01;36m[K^[m[K
+[01m[K/home/sanya/test_ws/src/robot/custom_global_planner/src/custom_global_planner.cpp:97:9:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K}[m[K’ at end of input
+   97 |         [01;31m[KPyRun_SimpleString[m[K(sys.path.append("/home/sanya/test_ws/src/robot/custom_global_planner/src/custom_global_planner/");
+      |         [01;31m[K^~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/sanya/test_ws/src/robot/custom_global_planner/src/custom_global_planner.cpp:68:57:[m[K [01;36m[Knote: [m[Kto match this ‘[01m[K{[m[K’
+   68 |          std::vector<geometry_msgs::PoseStamped>& plan) [01;36m[K{[m[K
+      |                                                         [01;36m[K^[m[K
+[01m[K/home/sanya/test_ws/src/robot/custom_global_planner/src/custom_global_planner.cpp:97:9:[m[K [01;35m[Kwarning: [m[Kno return statement in function returning non-void [[01;35m[K-Wreturn-type[m[K]
+   97 |         [01;35m[KPyRun_SimpleString[m[K(sys.path.append("/home/sanya/test_ws/src/robot/custom_global_planner/src/custom_global_planner/");
+      |         [01;35m[K^~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/sanya/test_ws/src/robot/custom_global_planner/src/custom_global_planner.cpp:[m[K At global scope:
+[01m[K/home/sanya/test_ws/src/robot/custom_global_planner/src/custom_global_planner.cpp:97:9:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K}[m[K’ at end of input
+[01m[K/home/sanya/test_ws/src/robot/custom_global_planner/src/custom_global_planner.cpp:14:33:[m[K [01;36m[Knote: [m[Kto match this ‘[01m[K{[m[K’
+   14 | namespace custom_global_planner [01;36m[K{[m[K
+      |                                 [01;36m[K^[m[K
+make[2]: *** [CMakeFiles/custom_global_planner_lib.dir/build.make:63: CMakeFiles/custom_global_planner_lib.dir/src/custom_global_planner.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:219: CMakeFiles/custom_global_planner_lib.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

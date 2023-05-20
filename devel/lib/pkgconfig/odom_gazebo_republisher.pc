@@ -1,0 +1,1 @@
+/home/sanya/test_ws/devel/.private/odom_gazebo_republisher/lib/pkgconfig/odom_gazebo_republisher.pc

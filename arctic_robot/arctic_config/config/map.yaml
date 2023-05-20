@@ -1,0 +1,6 @@
+image: landscape.bmp
+resolution: 0.5
+origin: [-80.0, -80.0, 0.0]
+occupied_thresh: 0.2
+free_thresh: 0.1
+negate: 0

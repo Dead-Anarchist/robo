@@ -1,0 +1,4 @@
+[35m[1mScanning dependencies of target custom_global_planner_lib[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/custom_global_planner_lib.dir/src/custom_global_planner.cpp.o[0m
+[100%] [32m[1mLinking CXX shared library /home/sanya/test_ws/devel/.private/custom_global_planner/lib/libcustom_global_planner_lib.so[0m
+[100%] Built target custom_global_planner_lib

@@ -1,0 +1,7 @@
+<KI:X> <ki:type> <ki:action> .
+<KI:X> <ki:actor> <ki:me> .
+<KI:X> <ki:action_type> <ki:move_to> .
+<KI:X> <ki:patient> <KI:Y> .
+<KI:Y> <rdf:type> <ki:car> .
+<KI:Y> <rdf:type> <ki:object> .
+<KI:Y> <ki:nearest_from_type> <ki:car> .

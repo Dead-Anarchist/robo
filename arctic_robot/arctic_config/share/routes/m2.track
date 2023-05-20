@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<Track ID="1">
+  <Point ID="32767" X="6.6" Y="33.3" Angle="0" Name="P2"/>
+  <Point ID="32768" X="34.0" Y="27.0" Angle="0" Name="P3"/>
+  <Point ID="32769" X="42.3" Y="5.3" Angle="120" Name="Finish Point"/>
+</Track>

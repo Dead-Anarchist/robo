@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <arg name="robot" default="target_robot"/>
+
+ 
+  <arg name="x" default="10"/>
+  <arg name="y" default="0"/>
+  <arg name="z" default="0.5"/>
+
+  <group ns="$(arg robot)">
+    <!-- Spawn robot -->
+    <param name="robot_description" 
+      command="$(find xacro)/xacro --inorder '$(find target_vehicle_description)/urdf/target_vehicle.xacro'"/>
+    
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" >
+      <param name="tf_prefix" value="$(arg robot)" />
+    </node>
+  
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" 
+      args="-param robot_description -urdf -x $(arg x) -y $(arg y) -z $(arg z) -model target_model"/>
+  
+    <rosparam file="$(find target_vehicle_control)/config/target_control.yaml" command="load" />
+    
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" 
+      respawn="false" output="screen"
+      args="joint_state_controller mobile_base_controller" />
+    
+    <node name="odom_gazebo_republisher" pkg="odom_gazebo_republisher" type="odom_republisher.py">
+      <param name="odom_frame" value="$(arg robot)/odom" />
+      <param name="base_frame" value="$(arg robot)/base_link" />
+      <remap from="odom" to="target_ground_truth_odom" />
+    </node>
+    
+    <node pkg="tf" type="static_transform_publisher" name="target_static_odom_publisher" args="0 0 0 0 0 0 1 map $(arg robot)/odom 100" />
+    
+  <node pkg="move_base" type="move_base" name="move_base" output="screen">
+    <rosparam file="$(find target_vehicle_control)/config/navigation/costmap_common_params.yaml" command="load" ns="global_costmap" subst_value="true"/>
+    <rosparam file="$(find target_vehicle_control)/config/navigation/costmap_common_params.yaml" command="load" ns="local_costmap" subst_value="true"/>
+    <rosparam file="$(find target_vehicle_control)/config/navigation/local_costmap_params.yaml" command="load" subst_value="true"/>
+    <rosparam file="$(find target_vehicle_control)/config/navigation/global_costmap_params.yaml" command="load" subst_value="true"/> 
+    <rosparam file="$(find target_vehicle_control)/config/navigation/base_local_planner_params.yaml" command="load" subst_value="true"/>
+
+    <param name="controller_frequency" type="double" value="10." />
+    
+    <remap from="odom" to="odom_ros"/>
+    <remap from="map" to="/map"/>
+
+    <remap from="cmd_vel" to="mobile_base_controller/cmd_vel"/>
+
+    <param name="base_local_planner" type="str" value="teb_local_planner/TebLocalPlannerROS" />
+    
+  </node>
+
+  <node name="cyclic_movement_server" pkg="scenario_executioner" type="scenario_executioner_node.py" output="screen">
+    <param name="scenario_file" type="str" value="$(find target_vehicle_control)/config/target_cycle.track" />
+  </node>
+    
+  <node name="arctic_demo" pkg="target_vehicle_control" type="arctic_demo_script.py" output="screen">
+    <param name="scenario_file" type="str" value="$(find target_vehicle_control)/config/target_cycle.track" />
+  </node>
+  
+  
+  </group>  
+</launch>

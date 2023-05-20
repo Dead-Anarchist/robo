@@ -1,0 +1,1 @@
+/home/sanya/test_ws/devel/.private/test_robot_config/lib/pkgconfig/test_robot_config.pc

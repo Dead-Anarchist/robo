@@ -1,0 +1,8 @@
+prefix=/home/sanya/test_ws/install
+
+Name: test_robot_description
+Description: Description of test_robot_description
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

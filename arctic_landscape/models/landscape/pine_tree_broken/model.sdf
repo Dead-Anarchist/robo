@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="pine_tree_broken">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry>
+          <!-- <mesh> -->
+          <!--   <uri>model://landscape/pine_tree_broken/meshes/pine_tree_broken.dae</uri> -->
+          <!-- </mesh> -->
+          <box>
+            <!-- <size>1.6 2.28 1.47</size> -->
+            <size>0.6 2.5 1.47</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="branch">
+        <geometry>
+          <mesh>
+            <uri>model://landscape/pine_tree_broken/meshes/pine_tree_broken.dae</uri>
+            <submesh>
+              <name>Branch</name>
+            </submesh>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://landscape/pine_tree_broken/materials/scripts/</uri>
+            <uri>model://landscape/pine_tree_broken/materials/textures/</uri>
+            <name>PineTree/Branch</name>
+          </script>
+        </material>
+      </visual>
+      
+      <visual name="bark">
+        <geometry>
+          <mesh>
+            <uri>model://landscape/pine_tree_broken/meshes/pine_tree_broken.dae</uri>
+            <submesh>
+              <name>Bark</name>
+            </submesh>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://landscape/pine_tree_broken/materials/scripts/</uri>
+            <uri>model://landscape/pine_tree_broken/materials/textures/</uri>
+            <name>PineTree/Bark</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>

@@ -1,0 +1,3 @@
+<KI:X> <ki:type> <ki:action> .
+<KI:X> <ki:actor> <ki:me> .
+<KI:X> <ki:action_type> <ki:continue> .

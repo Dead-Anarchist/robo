@@ -1,0 +1,15 @@
+[01m[K/home/sanya/test_ws/src/robot/custom_global_planner/src/custom_global_planner.cpp:[m[K In member function ‘[01m[Kvirtual bool custom_global_planner::CustomGlobalPlanner::makePlan(const PoseStamped&, const PoseStamped&, std::vector<geometry_msgs::PoseStamped_<std::allocator<void> > >&)[m[K’:
+[01m[K/home/sanya/test_ws/src/robot/custom_global_planner/src/custom_global_planner.cpp:100:41:[m[K [01;31m[Kerror: [m[Kcannot convert ‘[01m[KPyObject*[m[K’ {aka ‘[01m[K_object*[m[K’} to ‘[01m[Kconst char*[m[K’
+  100 |         pModule = PyImport_ImportModule([01;31m[KpName[m[K);
+      |                                         [01;31m[K^~~~~[m[K
+      |                                         [01;31m[K|[m[K
+      |                                         [01;31m[KPyObject* {aka _object*}[m[K
+In file included from [01m[K/usr/include/python3.8/Python.h:145[m[K,
+                 from [01m[K/home/sanya/test_ws/src/robot/custom_global_planner/include/custom_global_planner/custom_global_planner.h:16[m[K,
+                 from [01m[K/home/sanya/test_ws/src/robot/custom_global_planner/src/custom_global_planner.cpp:2[m[K:
+[01m[K/usr/include/python3.8/import.h:59:17:[m[K [01;36m[Knote: [m[K  initializing argument 1 of ‘[01m[KPyObject* PyImport_ImportModule(const char*)[m[K’
+   59 |     [01;36m[Kconst char *name[m[K            /* UTF-8 encoded string */
+      |     [01;36m[K~~~~~~~~~~~~^~~~[m[K
+make[2]: *** [CMakeFiles/custom_global_planner_lib.dir/build.make:63: CMakeFiles/custom_global_planner_lib.dir/src/custom_global_planner.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:219: CMakeFiles/custom_global_planner_lib.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

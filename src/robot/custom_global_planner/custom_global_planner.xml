@@ -1,0 +1,5 @@
+<library path="lib/libcustom_global_planner_lib">
+  <class name="custom_global_planner/CustomGlobalPlanner" type="custom_global_planner::CustomGlobalPlanner" base_class_type="nav_core::BaseGlobalPlanner">
+    <description>Test global planner</description>
+  </class>
+ </library> 

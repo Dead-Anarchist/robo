@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+  <arg name="robot" default="default_robot"/>
+  <arg name="output" default="screen" />
+
+  <arg name="paused" default="false"/>
+
+  <arg name="gazebo_gui" default="false"/>
+  <arg name="rviz_gui" default="true"/>
+
+  <!-- Launch gazebo world and robot -->
+  <include file="$(find arctic_model_gazebo)/launch/arctic_model_only.launch">
+    <arg name="robot" value="$(arg robot)"/>
+    <arg name="paused" value="$(arg paused)"/>
+
+    <arg name="gui" value="$(arg gazebo_gui)"/>
+  </include>
+  
+
+  <!-- Bring up robot -->
+  <include file="$(find arctic_config)/launch/arctic_bringup.launch">
+    <arg name="robot" value="$(arg robot)"/>
+    <arg name="rviz_gui" value="$(arg rviz_gui)"/>
+  </include>
+
+  <!-- objects mapper -->
+  <!--node name="simple_mapper" pkg="simple_mapper" type="simple_mapper.py" output="screen" ns="/" >
+    <param name="frame_cam" value="camera_link"/>
+    <param name="parent_frame" value="map"/>
+    <param name="map_file" value="$(find arctic_model_gazebo)/share/map.xml"/>
+    <param name="object_info_in_topic" value="/msg_objdet"/>
+    <param name="object_info_out_topic" value="/map_objects"/>
+    <param name="processUpdate_sec" value="0.1"/>
+    <param name="object_pose_topic" value="/object_pose"/>
+    
+  </node-->
+
+  <node name="signproc_translation_node" pkg="signproc" type="semiotic_processor_node.py"
+    output="$(arg output)" ns="/">
+    <param name="python3_app_name" value="$(find signproc)/src/python3_wrappers/semiotic_processor_proc.py" />
+    <param name="initial_model" value="$(find signproc)/config/arctic.sgn" />
+    <param name="use_heuristics" value="True" />
+    <param name="map_file" value="$(find arctic_model_gazebo)/share/map.xml"/>
+    <param name="camera_frame" value="rotating_camera_link"/>
+    <param name="global_frame" value="map"/>
+  </node>
+
+  <node name="command_preprocessor" pkg="signproc" type="command_interpreter_node.py" output="$(arg output)" required="true">
+    <param name="python3_app_name" value="$(find signproc)/src/python3_wrappers/command_interpreter_proc.py"/>
+    <param name="initial_model" value="$(find signproc)/config/commands.sgn"/>
+    <param name="markers_file" value="$(find signproc)/config/markers.csv"/>
+  </node>
+  
+  <arg name="route" default="example.track" />
+
+  <node name="spatial_relations_node" pkg="signproc" type="spatial_relations_processor.py" output="$(arg output)"  ns="/">
+  </node>
+
+  <node name="instruction_processor_node" pkg="signproc" type="instruction_processor.py" output="$(arg output)"  ns="/">
+    <param name="patrol_scenario_file" value="$(find scenario_executioner)/share/$(arg route)" />
+    <param name="photo_output_dir" value="~/Pictures" />
+    <remap from="start_scenario" to="/default_robot/scenario_publisher/start_scenario" />
+    <remap from="pause_scenario" to="/default_robot/scenario_publisher/pause_scenario" />
+    <remap from="resume_scenario" to="/default_robot/scenario_publisher/resume_scenario" />
+    <remap from="stop_scenario" to="/default_robot/scenario_publisher/stop_scenario" />
+    <remap from="/default_robot/cmd_vel" to="/default_robot/mobile_base_controller/cmd_vel" />
+  </node>
+
+  <node name="scenario_publisher" pkg="scenario_executioner" type="scenario_executioner_node.py" 
+    ns="$(arg robot)" output="$(arg output)">
+    <param name="scenario_file" type="str" value="$(find scenario_executioner)/share/$(arg route)" />
+  </node>
+  
+  <node name="textctl_server" pkg="textctl" type="textctl_server.py" output="$(arg output)" ns="$(arg robot)">
+    <remap from="cmd_vel" to="mobile_base_controller/cmd_vel" />
+  </node>
+
+  <node name="http_server_rdf" pkg="semiotic_interface" type="http_server_rdf.py" output="$(arg output)" ns="/" />
+  <node name="http_server_json" pkg="semiotic_interface" type="http_server_json.py" output="$(arg output)" ns="/" />
+
+  <node name="test_teleporter" pkg="test_robot_teleporter" type="test_robot_teleporter_node.py" output="$(arg output)" ns="$(arg robot)">
+      <param name="ip_address" value="127.0.0.1" />
+      <param name="port" value="24001" />
+      <param name="h_diff" value="3." />
+  </node>
+  
+</launch>

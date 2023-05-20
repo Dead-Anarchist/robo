@@ -1,0 +1,4 @@
+Linked: (/home/sanya/test_ws/devel/.private/custom_global_planner/share/custom_global_planner/cmake/custom_global_plannerConfig.cmake, /home/sanya/test_ws/devel/share/custom_global_planner/cmake/custom_global_plannerConfig.cmake)
+Linked: (/home/sanya/test_ws/devel/.private/custom_global_planner/share/custom_global_planner/cmake/custom_global_plannerConfig-version.cmake, /home/sanya/test_ws/devel/share/custom_global_planner/cmake/custom_global_plannerConfig-version.cmake)
+Linked: (/home/sanya/test_ws/devel/.private/custom_global_planner/lib/libcustom_global_planner_lib.so, /home/sanya/test_ws/devel/lib/libcustom_global_planner_lib.so)
+Linked: (/home/sanya/test_ws/devel/.private/custom_global_planner/lib/pkgconfig/custom_global_planner.pc, /home/sanya/test_ws/devel/lib/pkgconfig/custom_global_planner.pc)

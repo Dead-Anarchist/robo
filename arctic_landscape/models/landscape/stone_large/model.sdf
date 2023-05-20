@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+
+  <model name="largeStone">
+      <!-- <pose>0 0 0  0 0 0</pose> -->
+      <static>true</static>
+      <link name="largeStone">
+
+        <inertial>
+          <mass>40</mass>
+        </inertial>
+        
+        <collision name="collision">
+          <pose>0 0 0.35  0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.4 1.4 .7</size>
+            </box>
+            <!-- <mesh> -->
+            <!--   <uri>model://landscape/stone_large/meshes/stone_large.dae</uri> -->
+            <!-- </mesh> -->
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://landscape/stone_large/meshes/stone_large.dae</uri>
+            </mesh>
+          </geometry>
+          <material> 
+            <script>
+              <uri>model://landscape/stone_large/materials/scripts/stone.material</uri>
+              <name>stone/winter</name>
+            </script>
+          </material> 
+        </visual>
+      </link>
+    </model>
+</sdf>

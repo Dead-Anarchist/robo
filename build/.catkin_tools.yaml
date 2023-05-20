@@ -1,0 +1,6 @@
+devel_space: /home/sanya/test_ws/devel
+install: false
+install_space: /home/sanya/test_ws/install
+profile: default
+source_space: /home/sanya/test_ws/src
+workspace: /home/sanya/test_ws

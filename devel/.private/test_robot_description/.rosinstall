@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/sanya/test_ws/devel/.private/test_robot_description/setup.sh

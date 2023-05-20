@@ -1,0 +1,44 @@
+<launch>
+
+  <arg name="paused" default="false"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gazebo_gui" default="true"/>
+  <arg name="world" default="arctic3"/>
+  <arg name="debug" default="false"/>
+  <arg name="headless" default="false"/>
+
+  <!-- Launch gazebo world and robot -->
+  <env name="GAZEBO_MODEL_PATH"
+    value="$(find arctic_model_gazebo)/../models:$(optenv GAZEBO_MODEL_PATH)"/>
+
+  <env name="GAZEBO_RESOURCE_PATH"
+    value="$(find arctic_model_gazebo):$(optenv GAZEBO_RESOURCE_PATH)"/>
+
+  <param name="/use_sim_time" value="$(arg use_sim_time)"/>
+
+  <!-- Launch world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="worlds/$(arg world).world"/>
+    <arg name="debug" value="$(arg debug)" />
+    <arg name="gui" value="$(arg gazebo_gui)" />
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="headless" value="$(arg headless)"/>
+  </include>  
+
+  <!-- Spawn static camera -->
+  <param name="static_camera_description" 
+    command="$(find xacro)/xacro --inorder '$(find arctic_model_description)/urdf/static_camera.xacro'"/>
+  
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param static_camera_description -urdf -x 0 -z 2 -model static_camera"/>
+
+  <node name="move_cam" pkg="arctic_model_gazebo" type="get_images_set.py" output="screen" required="True">
+    <param name="output_dir" value="$(find arctic_model_gazebo)/images"/>
+    <param name="world_file" value="$(find arctic_model_gazebo)/worlds/arctic3.world"/>
+    <param name="model_library" value="$(find arctic_model_gazebo)/../../../models" />
+    <param name="imaging_settings" value="$(find arctic_model_gazebo)/config/get_images_config.json"/>
+    <param name="use_cache_file" value="False"/>
+    <param name="draw_debug_rects" value="True"/>
+  </node>
+  
+</launch>

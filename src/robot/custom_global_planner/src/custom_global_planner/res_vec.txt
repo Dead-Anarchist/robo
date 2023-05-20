@@ -1,0 +1,38 @@
+#down line
+[0, 0] True
+
+#up line
+[0, 0] True
+
+#left line
+[0, 0] True
+
+#right line
+[0, 0] True
+
+#zone 5
+[0, 0] True
+
+#zone 1
+[1, -1] True
+
+#zone 2
+[0, -2] True
+
+#zone 3
+[-1, -2] True
+
+#zone 4
+[2, 0] True
+
+#zone 6
+[-2, 0] True
+
+#zone 7
+[1, 1] True
+
+#zone 8
+[0, 1] True
+
+#zone 9
+[-1, 1] True

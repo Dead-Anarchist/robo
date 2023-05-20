@@ -1,0 +1,6 @@
+<KI:F0> <ki:action_type> <ki:follow> .
+<KI:F0> <ki:actor> <ki:me> .
+<KI:F0> <ki:patient> <KI:F0_V7> .
+<KI:F0> <ki:type> <ki:action> .
+<KI:F0_V7> <ki:type> <ki:car> .
+

@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<launch>
+  
+  <node pkg="tf" type="static_transform_publisher" name="link1_broadcaster" args="10 10 0 0 0 0 1 base_link goal 100" />
+  
+  <node name="follow_action_node" type="follow_action_node.py" pkg="parade_tray_follow_action" output="screen">
+  </node>
+
+</launch>
+ 

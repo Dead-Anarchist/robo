@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name="jersey_barrier">
+    <static>true</static>
+    <link name="link">
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://landscape/jersey_barrier/meshes/jersey_barrier.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <collision name="upright">
+        <pose>0 0 0.6 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>4.2 0.8 1.2</size>
+          </box>
+        </geometry>
+      </collision>
+    </link>
+  </model>
+</sdf>
